@@ -10,9 +10,9 @@ const tripFilters = document.querySelector('.trip-controls__filters');
 const tripMain = document.querySelector('.trip-main');
 const tripEvents = document.querySelector('.trip-events');
 const pointsModel = new PointsModel;
-const boardPresenter = new WaypointsPresenter({waypointsContainer: tripEvents, pointsModel});
+const waypointPresenter = new WaypointsPresenter({waypointsContainer: tripEvents, pointsModel});
 
 render(new InfoView(), tripMain, RenderPosition.AFTERBEGIN);
 render(new FilterView(), tripFilters);
 render(new ButtonView(), tripMain);
-boardPresenter.init();
+waypointPresenter.init();
