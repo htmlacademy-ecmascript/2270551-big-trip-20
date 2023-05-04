@@ -1,61 +1,160 @@
-import { getRandom } from '../util.js';
-import {POINT_TYPES, CITIES, DESCRIPTION_NAME, POINTS_AMOUNT, NAME_SERVICE} from '../const.js';
+import { getRandomArrayElement } from '../utils';
+import { Destinations, Descriptions } from '../consts';
 
-function getRandomValue(set) {
-  const MIN = 0;
-  const max = set.length - 1;
-  return set[getRandom(MIN, max)];
+
+const point = [ {
+  'basePrice': 1100,
+  'dateFrom': '2019-07-10T22:55:56.845Z',
+  'dateTo': '2019-07-11T11:22:13.375Z',
+  'destination': '3',
+  'isFavorite': false,
+  'offers': [
+    '2'
+  ],
+  'type': 'taxi',
+},
+{
+  'basePrice': 1300,
+  'dateFrom': '2019-07-10T22:55:56.845Z',
+  'dateTo': '2019-07-11T11:22:13.375Z',
+  'destination': '4',
+  'isFavorite': true,
+  'offers': [
+    '1'
+  ],
+  'type': 'taxi',
+},
+{
+  'basePrice': 1200,
+  'dateFrom': '2019-07-10T22:55:56.845Z',
+  'dateTo': '2019-07-11T11:22:13.375Z',
+  'destination': '4',
+  'isFavorite': true,
+  'offers': [
+    '1'
+  ],
+  'type': 'taxi',
+},
+{
+  'basePrice': 1800,
+  'dateFrom': '2019-07-10T22:55:56.845Z',
+  'dateTo': '2019-07-11T11:22:13.375Z',
+  'destination': '11',
+  'isFavorite': true,
+  'offers': [
+    '1'
+  ],
+  'type': 'taxi',
+},
+];
+
+const moreOffers = [
+  {
+    type: 'taxi',
+    offers: [
+      {
+        id: '1',
+        title: 'Choose seats',
+        price: 150
+      },
+      {
+        id: '2',
+        title: 'Add luggage',
+        price: 150
+      }
+    ]
+  },
+  {
+    type: 'taxi',
+    offers: [
+      {
+        id: '5',
+        title: 'Switch to comfort class',
+        price: 250
+      },
+      {
+        id: '6',
+        title: 'Add luggage',
+        price: 150
+      }
+    ]
+  },
+];
+
+const destinations = [
+  {
+    id: '3',
+    description:getRandomArrayElement(Descriptions),
+    name: getRandomArrayElement(Destinations),
+    pictures: [
+      {
+        srс: 'https://loremflickr.com/248/152?random=2',
+        description: 'Event photo'
+      },
+      {
+        srс: 'https://loremflickr.com/248/152?random=3',
+        description: 'Event photo'
+      }
+    ]
+  },
+  {
+    id: '4',
+    description: getRandomArrayElement(Descriptions),
+    name: getRandomArrayElement(Destinations),
+    pictures: [
+      {
+        srс: 'https://loremflickr.com/248/152?random=1',
+        description: 'Event photo'
+      },
+      {
+        srс: 'https://loremflickr.com/248/152?random=5',
+        description: 'Event photo'
+      }
+    ]
+  },
+  {
+    id: '4',
+    description: getRandomArrayElement(Descriptions),
+    name: getRandomArrayElement(Destinations),
+    pictures: [
+      {
+        srс: 'https://loremflickr.com/248/152?random=1',
+        description: 'Event photo'
+      },
+      {
+        srс: 'https://loremflickr.com/248/152?random=5',
+        description: 'Event photo'
+      }
+    ]
+  },
+  {
+    id: '11',
+    description: getRandomArrayElement(Descriptions),
+    name: getRandomArrayElement(Destinations),
+    pictures: [
+      {
+        srс: 'https://loremflickr.com/248/152?random=1',
+        description: 'Event photo'
+      },
+      {
+        srс: 'https://loremflickr.com/248/152?random=5',
+        description: 'Event photo'
+      }
+    ]
+  }
+];
+
+
+function getPoint(){
+  return getRandomArrayElement(point);
 }
 
-function createPicture(descriptionName) {
-  return Array.from({length: getRandom(1, 5)}, () => ({
-    src: `https://loremflickr.com/248/152?random=${getRandom(1, 100)}`,
-    description: descriptionName
-  }));
+function getOffer() {
+  return getRandomArrayElement(moreOffers);
 }
 
-function generateDestination() {
-  const destinationName = getRandomValue(CITIES);
-  const descriptionName = getRandomValue(DESCRIPTION_NAME);
-  return {
-    name: destinationName,
-    description: descriptionName,
-    pictures: createPicture(DESCRIPTION_NAME)
-  };
+function getDestination() {
+  return destinations;
 }
 
-function generateOffers() {
-  return Array.from({length: getRandom(0, 1)}, (index) => ({
-    id: index,
-    title: getRandomValue(NAME_SERVICE),
-    price: getRandom(30, 250)
-  }));
-}
-
-function createOffers() {
-  return Array.from({length: getRandom(1, 2)}, () => ({
-    type: getRandomValue(POINT_TYPES),
-    offers: generateOffers()
-  }));
-}
-
-function createPoint() {
-
-  const day = getRandom(0,31);
-  const hour = getRandom(0,24);
-  const minute = getRandom(0,60);
-
-  return {
-    basePrice: getRandom(50, 1500),
-    dateFrom: new Date(2022, 11, day, hour, minute),
-    dateTo: new Date(2022, 11, day + getRandom(0, 1), hour + getRandom(0, 24, minute + getRandom(0, 60))),
-    destination: generateDestination(),
-    id: getRandom(10, 50),
-    offers: createOffers(),
-    type: getRandomValue(POINT_TYPES)
-  };
-}
-
-const createPoints = () => Array.from({length: getRandom(POINTS_AMOUNT.MIN, POINTS_AMOUNT.MAX)}, createPoint);
-
-export {createPoints};
+export {getPoint, getOffer, getDestination};

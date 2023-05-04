@@ -1,8 +1,21 @@
-import {createPoints} from '../mocks/mock-waypoint.js';
-export default class PointsModel {
-  points = createPoints();
+import { getPoint,getOffer,getDestination } from '../mocks/mock-waypoint.js';
 
-  getPoints() {
-    return this.points;
+const POINT_COUNT = 3;
+
+export default class PointsModel {
+  point = Array.from({length: POINT_COUNT},getPoint);
+  offer = Array.from({length: POINT_COUNT},getOffer);
+  destination = getDestination();
+
+  getPoints(){
+    return this.point;
+  }
+
+  getOffers(){
+    return this.offer;
+  }
+
+  getDestinations(){
+    return this.destination;
   }
 }
