@@ -1,4 +1,4 @@
-import { getRandom } from '../until.js';
+import { getRandom } from '../util.js';
 import {POINT_TYPES, CITIES, DESCRIPTION_NAME, POINTS_AMOUNT, NAME_SERVICE} from '../const.js';
 
 function getRandomValue(set) {

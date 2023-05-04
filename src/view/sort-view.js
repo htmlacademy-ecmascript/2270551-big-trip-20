@@ -1,5 +1,5 @@
 import {createElement} from '../render.js';
-import {getPairsFromMap} from '../until.js';
+import {getPairsFromMap} from '../util.js';
 
 const SORT_TYPES = new Map([
   ['day', {label: 'Day', checked: true}],
