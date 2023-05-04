@@ -1,36 +1,23 @@
 import dayjs from 'dayjs';
 
-function getRandom (a = 0, b = 1) {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
+const DATE_FORMAT_TIME = 'HH:mm';
+const DATE_FORMAT_MONTS = 'MMM D';
+const DATE_FORMAT_MONTS_TIME = 'DD/MM/YY hh:mm';
 
-  return Math.floor(lower + Math.random() * (upper - lower + 1));
+function getRandomArrayElement(items) {
+  return items[Math.floor(Math.random() * items.length)];
 }
 
-function getDate(date) {
-  return dayjs(date).format('YYYY-MM-DD');
+function humanizePointDateTime(date) {
+  return date ? dayjs(date).format(DATE_FORMAT_TIME) : '';
 }
 
-function getDateTime(date) {
-  return dayjs(date).format('DD/MM/YY HH:mm');
+function humanizePointDateDayMonts(date) {
+  return date ? dayjs(date).format(DATE_FORMAT_MONTS) : '';
 }
 
-function getDateWithoutSeconds(date) {
-  return dayjs(date).format('YYYY-MM-DDThh:mm');
+function humanizePointDateDayMontsTime(date) {
+  return date ? dayjs(date).format(DATE_FORMAT_MONTS_TIME) : '';
 }
 
-function getDayFromDate(date) {
-  return dayjs(date).format('MMM DD');
-}
-
-function getTimeFromDate(date) {
-  return dayjs(date).format('hh:mm');
-}
-
-function getPairsFromMap(data) {
-  const result = new Array();
-  data.forEach((value, key) => result.push([key, value]));
-  return result;
-}
-
-export {getRandom, getDate, getDateTime, getDateWithoutSeconds, getDayFromDate, getTimeFromDate, getPairsFromMap};
+export {getRandomArrayElement,humanizePointDateTime,humanizePointDateDayMonts,humanizePointDateDayMontsTime};

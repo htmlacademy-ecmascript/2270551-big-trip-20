@@ -1,54 +1,18 @@
-const POINT_TYPES = [
-  'taxi',
-  'bus',
-  'train',
-  'ship',
-  'drive',
-  'flight',
-  'check-in',
-  'sightseeing',
-  'restaurant'
+const WaypointType = [
+  'Taxi', 'Bus', 'Train', 'Ship', 'Drive', 'Flight', 'Check-in', 'Sightseeing', 'Restaurant'
 ];
 
-const CITIES = [
-  'Saint Petersburg',
-  'Krasnodar',
-  'Rostov-on-Done',
-  'Rome',
-  'Vladivostok',
-  'Madrid',
-  'Monaco',
-  'Moscow',
-  'Samara'
+const Destinations = [
+  'Amsterdam', 'Berlin', 'Brooklyn ', 'New York', 'Moscow', 'Saint Petersburg', 'London', 'Istanbul', 'Madrid'
 ];
 
-const DESCRIPTION_NAME = [
+const Descriptions = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  'Cras aliquet varius magna, non porta ligula feugiat eget.',
-  'Fusce tristique felis at fermentum pharetra.',
-  'Aliquam id orci ut lectus varius viverra.',
-  'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.',
+  'Cras aliquet varius magna, non porta ligula feugiat eget.Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.',
+  'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.',
+  'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.',
+  'Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat.',
+  'Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.',
 ];
 
-const POINTS_AMOUNT = {
-  MIN: 3,
-  MAX: 6
-};
-
-const NAME_SERVICE = [
-  'Upgrade to a business class',
-  'a quick smoke',
-  'give advice',
-  'steal a towel',
-  'break the dishes',
-  'Lunch in city',
-  'Add luggage',
-  'Switch to comfort'
-];
-
-const HOUR_MINUTES_COUNT = 60;
-const TOTAL_DAY_MINUTES_COUNT = 1440;
-const DATE_FORMAT = 'YYYY-MM-DD';
-const DATE_TIME_FORMAT = 'DD/MM/YY hh:mm';
-
-export {POINT_TYPES, CITIES, DESCRIPTION_NAME, POINTS_AMOUNT, HOUR_MINUTES_COUNT, TOTAL_DAY_MINUTES_COUNT, DATE_FORMAT, DATE_TIME_FORMAT, NAME_SERVICE};
+export {WaypointType,Destinations,Descriptions};
