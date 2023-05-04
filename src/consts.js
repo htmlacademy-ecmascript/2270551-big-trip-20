@@ -3,7 +3,7 @@ const WaypointType = [
 ];
 
 const Destinations = [
-  'Amsterdam', 'Berlin', 'Brooklyn ', 'New York', 'Moscow', 'Saint Petersburg', 'London', 'Istanbul', 'Madrid'
+  'Amsterdam', 'Krasnodar', 'Rostov-on-Done', 'New York', 'Moscow', 'Saint Petersburg', 'Samara', 'Soсhi', 'Madrid'
 ];
 
 const Descriptions = [

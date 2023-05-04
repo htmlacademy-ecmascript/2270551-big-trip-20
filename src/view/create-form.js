@@ -27,8 +27,7 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
     return offersList.join('');
   };
 
-  return `<ul class="trip-events__list">
-  <li class="trip-events__item">
+  return `<li class="trip-events__item">
   <form class="event event--edit" action="#" method="post">
     <header class="event__header">
       <div class="event__type-wrapper">
@@ -126,8 +125,7 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
       </section>
     </section>
   </form>
-</li>
-</ul>`;
+</li>`;
 }
 
 export default class CreateFormView {
