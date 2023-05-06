@@ -1,5 +1,6 @@
 import { createElement } from '../render.js';
 import { humanizePointDateDayMontsTime } from '../utils.js';
+import { Offers } from '../consts.js';
 
 function createFormTemplate(tripPoint,tripOffer,tripDestination) {
   const {destination, type, dateFrom, dateTo} = tripPoint;
@@ -8,9 +9,9 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
   const dateEnd = humanizePointDateDayMontsTime(dateTo);
 
   const destinationObj = tripDestination.find((dstn)=>dstn.id === destination);
-  const offerObj = tripOffer.find((offer)=>offer.type === type);
+  /*const offerObj = tripOffer.find((offer)=>offer.type === type);*/
 
-  const getOffersList = () => {
+  /*const getOffersList = () => {
     const offersList = [];
     for (let i = 0; i < offerObj.offers.length; i++){
       const offer = `
@@ -25,9 +26,39 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
       offersList.push(offer);
     }
     return offersList.join('');
+  };*/
+
+  const getOffersByType = (offers, offerType) => {
+    const offersByType = offers.find((offer) => offer.type === offerType);
+    return offersByType ? offersByType.offers : [];
   };
 
-  return `<li class="trip-events__item">
+  const typeOffers = getOffersByType(Offers, type.toLowerCase());
+
+  const createOffersByType = () => {
+    let callOffers = '';
+    if (typeOffers.length) {
+      callOffers = '';
+      typeOffers.forEach((offer) =>{
+        const checked = Math.random() > 0.5 ? 'checked' : '';
+        if(offer.title && offer.price && offer.id) {
+          callOffers += `
+          <div class="event__offer-selector">
+            <input class="event__offer-checkbox  visually-hidden" id="event-offer-${offer.id}" type="checkbox" name="event-offer-${offer.id}" ${checked}>
+            <label class="event__offer-label" for="event-offer-${offer.id}">
+              <span class="event__offer-title">${offer.title}</span>
+              &plus;&euro;&nbsp;
+              <span class="event__offer-price">${offer.price}</span>
+            </label>
+          </div>`;
+        }
+      });
+    }
+    return callOffers;
+  };
+
+  return `<ul class="trip-events__list">
+  <li class="trip-events__item">
   <form class="event event--edit" action="#" method="post">
     <header class="event__header">
       <div class="event__type-wrapper">
@@ -110,7 +141,7 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
       <section class="event__section  event__section--offers">
         <h3 class="event__section-title  event__section-title--offers">Offers</h3>
         <div class="event__available-offers">
-        ${getOffersList()}
+        ${createOffersByType()}
         </div>
       </section>
       <section class="event__section  event__section--destination">
@@ -120,15 +151,17 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
           <div class="event__photos-tape">
             <img class="event__photo" src=${destinationObj.pictures[0].srс} alt=${destinationObj.pictures[0].description}>
             <img class="event__photo" src=${destinationObj.pictures[1].srс} alt=${destinationObj.pictures[1].description}>
+            <img class="event__photo" src=${destinationObj.pictures[0].srс} alt=${destinationObj.pictures[0].description}>
           </div>
         </div>
       </section>
     </section>
   </form>
-</li>`;
+</li>
+</ul>`;
 }
 
-export default class CreateFormView {
+export default class FormCreateView {
   constructor({point,offer,destination}){
     this.point = point;
     this.offer = offer;

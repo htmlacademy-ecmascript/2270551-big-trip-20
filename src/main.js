@@ -16,3 +16,4 @@ render(new InfoView(), tripMain, RenderPosition.AFTERBEGIN);
 render(new FilterView(), tripFilters);
 render(new ButtonView(), tripMain);
 boarderPresenter.init();
+
