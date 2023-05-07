@@ -1,6 +1,6 @@
 import { createElement } from '../render.js';
 import { humanizePointDateDayMontsTime } from '../utils.js';
-//import { Offers } from '../consts.js';
+import { Offers } from '../consts.js';
 
 function createFormTemplate(tripPoint,tripOffer,tripDestination) {
   const {destination, type, dateFrom, dateTo} = tripPoint;
@@ -9,9 +9,9 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
   const dateEnd = humanizePointDateDayMontsTime(dateTo);
 
   const destinationObj = tripDestination.find((dstn)=>dstn.id === destination);
-  const offerObj = tripOffer.find((offer)=>offer.type === type);
+  //const offerObj = tripOffer.find((offer)=>offer.type === type);
 
-  const getOffersList = () => {
+  /* const getOffersList = () => {
     const offersList = [];
     for (let i = 0; i < offerObj.offers.length; i++){
       const offer = `
@@ -26,17 +26,17 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
       offersList.push(offer);
     }
     return offersList.join('');
-  };
+  }; */
 
 
-  /*const getOffersByType = (offers, offerType) => {
+  const getOffersByType = (offers, offerType) => {
     const offersByType = offers.find((offer) => offer.type === offerType);
     return offersByType ? offersByType.offers : [];
-  };*/
+  };
 
-  /*const typeOffers = getOffersByType(Offers, type.toLowerCase());*/
+  const typeOffers = getOffersByType(Offers, type.toLowerCase());
 
-  /*const createOffersByType = () => {
+  const createOffersByType = () => {
     let callOffers = '';
     if (typeOffers.length) {
       callOffers = '';
@@ -57,7 +57,7 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
       });
     }
     return callOffers;
-  }; */
+  };
 
   return `<ul class="trip-events__list">
   <li class="trip-events__item">
@@ -143,8 +143,8 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
       <section class="event__section  event__section--offers">
         <h3 class="event__section-title  event__section-title--offers">Offers</h3>
         <div class="event__available-offers">
+        ${createOffersByType()}
 
-        ${getOffersList()}
         </div>
       </section>
       <section class="event__section  event__section--destination">

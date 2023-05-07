@@ -1,12 +1,12 @@
-const WaypointType = [
+const WAYPOINT_TYPES = [
   'Taxi', 'Bus', 'Train', 'Ship', 'Drive', 'Flight', 'Check-in', 'Sightseeing', 'Restaurant'
 ];
 
-const Destinations = [
+const DESTINITIONS = [
   'Amsterdam', 'Krasnodar', 'Rostov-on-Done', 'New York', 'Moscow', 'Saint Petersburg', 'Samara', 'Soсhi', 'Madrid'
 ];
 
-const Descriptions = [
+const DESCRIPTIONS = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   'Cras aliquet varius magna, non porta ligula feugiat eget.Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.',
   'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.',
@@ -127,4 +127,4 @@ const Offers = [
 ];
 
 
-export {Offers,WaypointType,Destinations,Descriptions};
+export {Offers,WAYPOINT_TYPES,DESTINITIONS,DESCRIPTIONS};
