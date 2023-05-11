@@ -11,7 +11,7 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
   const destinationObj = tripDestination.find((dstn)=>dstn.id === destination);
   //const offerObj = tripOffer.find((offer)=>offer.type === type);
 
-  /* const getOffersList = () => {
+  /*const getOffersList = () => {
     const offersList = [];
     for (let i = 0; i < offerObj.offers.length; i++){
       const offer = `
@@ -26,7 +26,7 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
       offersList.push(offer);
     }
     return offersList.join('');
-  }; */
+  };*/
 
 
   const getOffersByType = (offers, offerType) => {
