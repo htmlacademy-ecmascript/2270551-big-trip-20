@@ -105,46 +105,35 @@ const mockPoints = [
   },
 ];
 
-/* const mockPoints = [ {
-  'basePrice': 1100,
-  'dateFrom': '2019-07-10T22:55:56.845Z',
-  'dateTo': '2019-07-11T11:22:13.375Z',
-  'destination': '3',
-  'isFavorite': true,
-  'offers': [ 1,2,3],
-  'type': 'flight',
-},
-{
-  'basePrice': 1300,
-  'dateFrom': '2019-07-10T22:55:56.845Z',
-  'dateTo': '2019-07-11T11:22:13.375Z',
-  'destination': '3',
-  'isFavorite': true,
-  'offers': [1,2],
-  'type': 'ship',
-},
-{
-  'basePrice': 1200,
-  'dateFrom': '2019-07-10T22:55:56.845Z',
-  'dateTo': '2019-07-11T11:22:13.375Z',
-  'destination': '4',
-  'isFavorite': true,
-  'offers': [1],
-  'type': 'taxi',
-},
-{
-  'basePrice': 1800,
-  'dateFrom': '2019-07-10T22:55:56.845Z',
-  'dateTo': '2019-07-11T11:22:13.375Z',
-  'destination': '1',
-  'isFavorite': true,
-  'offers': [3],
-  'type': 'bus',
-},
-]; */
-
 
 const mockDestinations = [
+  {
+    id: '0',
+    description:getRandomArrayElement(DESCRIPTIONS),
+    name: getRandomArrayElement(DESTINITIONS),
+    pictures: [
+      {
+        //srс: 'https://loremflickr.com/248/152?random=2',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=1',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
+      }
+    ]
+  },
   {
     id: '1',
     description:getRandomArrayElement(DESCRIPTIONS),
@@ -152,24 +141,23 @@ const mockDestinations = [
     pictures: [
       {
         //srс: 'https://loremflickr.com/248/152?random=2',
-        src: `https://loremflickr.com/248/152?random=${getRandomNumber()}`,
-        //src: `https://loremflickr.com/248/152?random=${Math.floor(Math.random() * 10)}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
         //srс: 'https://loremflickr.com/248/152?random=3',
-        src: `https://loremflickr.com/248/152?random=${getRandomNumber()}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
         //srс: 'https://loremflickr.com/248/152?random=3',
-        src: `https://loremflickr.com/248/152?random=${getRandomNumber()}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
         //srс: 'https://loremflickr.com/248/152?random=1',
-        src: `https://loremflickr.com/248/152?random=${getRandomNumber()}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       }
     ]
   },
@@ -179,24 +167,24 @@ const mockDestinations = [
     name: getRandomArrayElement(DESTINITIONS),
     pictures: [
       {
-        srс: 'https://loremflickr.com/248/152?random=1',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        //srс: 'https://loremflickr.com/248/152?random=1',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
-        srс: 'https://loremflickr.com/248/152?random=3',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
-        srс: 'https://loremflickr.com/248/152?random=4',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        //srс: 'https://loremflickr.com/248/152?random=4',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
-        srс: 'https://loremflickr.com/248/152?random=5',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        //srс: 'https://loremflickr.com/248/152?random=5',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       }
     ]
   },
@@ -207,23 +195,23 @@ const mockDestinations = [
     pictures: [
       {
         //srс: 'https://loremflickr.com/248/152?random=4',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
         //srс: 'https://loremflickr.com/248/152?random=3',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
         //srс: 'https://loremflickr.com/248/152?random=3',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
         //srс: 'https://loremflickr.com/248/152?random=5',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       }
     ]
   },
@@ -234,120 +222,27 @@ const mockDestinations = [
     pictures: [
       {
         //srс: 'https://loremflickr.com/248/152?random=1',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
         //srс: 'https://loremflickr.com/248/152?random=3',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
         //srс: 'https://loremflickr.com/248/152?random=3',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
         //srс: 'https://loremflickr.com/248/152?random=5',
-        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
-        'description': 'Event photo',
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        description: getRandomArrayElement(DESCRIPTIONS),
       }
     ]
   }
 ];
-
-
-/* const mockDestinations = [
-  {
-    id: 1,
-    description: getRandomArrayElement(DESCRIPTIONS),
-    name: 'Amsterdam',
-    pictures: [
-      {
-        src: `https://loremflickr.com/248/152?random=${Math.floor(Math.random() * 10)}`,
-        description: getRandomArrayElement(DESCRIPTIONS),
-      }
-    ],
-  },
-  {
-    id: 2,
-    description: getRandomArrayElement(DESCRIPTIONS),
-    name: 'Geneva',
-    pictures: [
-      {
-        src: `https://loremflickr.com/248/152?random=${Math.floor(Math.random() * 10)}`,
-        description: getRandomArrayElement(DESCRIPTIONS),
-      },
-      {
-        src: `https://loremflickr.com/248/152?random=${Math.floor(Math.random() * 10)}`,
-        description: getRandomArrayElement(DESCRIPTIONS),
-      },
-    ],
-  },
-  {
-    id: 3,
-    description: getRandomArrayElement(DESCRIPTIONS),
-    name: 'Chamonix',
-    pictures: [
-      {
-        src: `https://loremflickr.com/248/152?random=${Math.floor(Math.random() * 10)}`,
-        description: getRandomArrayElement(DESCRIPTIONS),
-      },
-      {
-        src: `https://loremflickr.com/248/152?random=${Math.floor(Math.random() * 10)}`,
-        description: getRandomArrayElement(DESCRIPTIONS),
-      },
-      {
-        src: `https://loremflickr.com/248/152?random=${Math.floor(Math.random() * 10)}`,
-        description: getRandomArrayElement(DESCRIPTIONS),
-      },
-    ],
-  },
-]; */
-
-
-/*const mockOffers = [
-  {
-    type: 'taxi',
-    offers: [
-      {
-        id: '1',
-        title: 'Upgrade to a business class',
-        price: 70
-      },
-      {
-        id: '2',
-        title: 'Choose the radio station',
-        price: 140
-      },
-      {
-        id: '3',
-        title: 'Choose temperature',
-        price: 63
-      },
-      {
-        id: '4',
-        title: 'Drive quickly',
-        price: 84
-      }
-    ]
-  },
-  {
-    type: 'bus',
-    offers: [
-      {
-        id: '3',
-        title: 'Switch to comfort class',
-        price: 250
-      },
-      {
-        id: '4',
-        title: 'Add luggage',
-        price: 150
-      }
-    ]
-  },
-]; */
 
 const mockOffers = [
   {

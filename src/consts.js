@@ -3,7 +3,7 @@ const WAYPOINT_TYPES = [
 ];
 
 const DESTINITIONS = [
-  'Amsterdam', 'Krasnodar', 'Rostov-on-Done', 'New York', 'Moscow', 'Saint Petersburg', 'Samara', 'Soсhi', 'Madrid'
+  'Amsterdam', 'Krasnodar', 'Rostov-on-Done', 'New York', 'Moscow'
 ];
 
 const DESCRIPTIONS = [

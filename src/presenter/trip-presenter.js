@@ -27,5 +27,6 @@ export default class BoarderPresenter {
       render(new TripEventItem({point: this.boardPoints[i],offer: this.pointsOffers,
         destination:this.pointsDestinations}),this.eventListComponent.getElement());
     }
+
   }
 }
