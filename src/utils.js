@@ -4,20 +4,14 @@ const DATE_FORMAT_TIME = 'HH:mm';
 const DATE_FORMAT_MONTS = 'MMM D';
 const DATE_FORMAT_MONTS_TIME = 'DD/MM/YY hh:mm';
 
-function getRandomArrayElement(items) {
-  return items[Math.floor(Math.random() * items.length)];
-}
+const getRandomNumber = (min, max) => Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) + min;
 
-function humanizePointDateTime(date) {
-  return date ? dayjs(date).format(DATE_FORMAT_TIME) : '';
-}
+const getRandomArrayElement = (items) => items[Math.floor(Math.random() * items.length)];
 
-function humanizePointDateDayMonts(date) {
-  return date ? dayjs(date).format(DATE_FORMAT_MONTS) : '';
-}
+const humanizePointDateTime = (date) => date ? dayjs(date).format(DATE_FORMAT_TIME) : '';
 
-function humanizePointDateDayMontsTime(date) {
-  return date ? dayjs(date).format(DATE_FORMAT_MONTS_TIME) : '';
-}
+const humanizePointDateDayMonts = (date) => date ? dayjs(date).format(DATE_FORMAT_MONTS) : '';
 
-export {getRandomArrayElement,humanizePointDateTime,humanizePointDateDayMonts,humanizePointDateDayMontsTime};
+const humanizePointDateDayMontsTime = (date) => date ? dayjs(date).format(DATE_FORMAT_MONTS_TIME) : '';
+
+export {getRandomNumber, getRandomArrayElement,humanizePointDateTime,humanizePointDateDayMonts,humanizePointDateDayMontsTime};
