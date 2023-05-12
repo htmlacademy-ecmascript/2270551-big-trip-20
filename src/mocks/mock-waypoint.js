@@ -1,5 +1,5 @@
-import { getRandomArrayElement } from '../utils';
-import { DESTINITIONS, DESCRIPTIONS } from '../consts';
+import { getRandomNumber,getRandomArrayElement } from '../utils.js';
+import { DESTINITIONS, DESCRIPTIONS } from '../consts.js';
 
 const DEFAULT_WAYPOINT = {
   id: '',
@@ -143,6 +143,7 @@ const mockPoints = [
 },
 ]; */
 
+
 const mockDestinations = [
   {
     id: '1',
@@ -150,13 +151,25 @@ const mockDestinations = [
     name: getRandomArrayElement(DESTINITIONS),
     pictures: [
       {
-        srс: 'https://loremflickr.com/248/152?random=2',
-        // src: `https://loremflickr.com/248/152?random=${Math.floor(Math.random() * 10)}`,
-        description: 'Event photo'
+        //srс: 'https://loremflickr.com/248/152?random=2',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        //src: `https://loremflickr.com/248/152?random=${Math.floor(Math.random() * 10)}`,
+        'description': 'Event photo',
       },
       {
-        srс: 'https://loremflickr.com/248/152?random=3',
-        description: 'Event photo'
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=1',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
       }
     ]
   },
@@ -166,12 +179,24 @@ const mockDestinations = [
     name: getRandomArrayElement(DESTINITIONS),
     pictures: [
       {
-        srс: 'https://loremflickr.com/248/152?random=3',
-        description: 'Event photo'
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
       },
       {
-        srс: 'https://loremflickr.com/248/152?random=4',
-        description: 'Event photo'
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=4',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=5',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
       }
     ]
   },
@@ -181,12 +206,24 @@ const mockDestinations = [
     name: getRandomArrayElement(DESTINITIONS),
     pictures: [
       {
-        srс: 'https://loremflickr.com/248/152?random=4',
-        description: 'Event photo'
+        //srс: 'https://loremflickr.com/248/152?random=4',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
       },
       {
-        srс: 'https://loremflickr.com/248/152?random=5',
-        description: 'Event photo'
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=5',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
       }
     ]
   },
@@ -196,12 +233,24 @@ const mockDestinations = [
     name: getRandomArrayElement(DESTINITIONS),
     pictures: [
       {
-        srс: 'https://loremflickr.com/248/152?random=1',
-        description: 'Event photo'
+        //srс: 'https://loremflickr.com/248/152?random=1',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
       },
       {
-        srс: 'https://loremflickr.com/248/152?random=5',
-        description: 'Event photo'
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=3',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
+      },
+      {
+        //srс: 'https://loremflickr.com/248/152?random=5',
+        'src': `https://loremflickr.com/248/152?random=${getRandomNumber(1,30)}`,
+        'description': 'Event photo',
       }
     ]
   }

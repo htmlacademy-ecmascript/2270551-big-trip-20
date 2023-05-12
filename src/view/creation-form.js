@@ -9,25 +9,6 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
   const dateEnd = humanizePointDateDayMontsTime(dateTo);
 
   const destinationObj = tripDestination.find((dstn)=>dstn.id === destination);
-  //const offerObj = tripOffer.find((offer)=>offer.type === type);
-
-  /*const getOffersList = () => {
-    const offersList = [];
-    for (let i = 0; i < offerObj.offers.length; i++){
-      const offer = `
-    <div class="event__offer-selector">
-      <input class="event__offer-checkbox  visually-hidden" id="event-offer-train-1" type="checkbox" name="event-offer-train">
-      <label class="event__offer-label" for="event-offer-train-1">
-        <span class="event__offer-title">${offerObj.offers[i].title}</span>
-        &plus;&euro;&nbsp;
-        <span class="event__offer-price">${offerObj.offers[i].price}</span>
-      </label>
-    </div>`;
-      offersList.push(offer);
-    }
-    return offersList.join('');
-  };*/
-
 
   const getOffersByType = (offers, offerType) => {
     const offersByType = offers.find((offer) => offer.type === offerType);
@@ -144,7 +125,6 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
         <h3 class="event__section-title  event__section-title--offers">Offers</h3>
         <div class="event__available-offers">
         ${createOffersByType()}
-
         </div>
       </section>
       <section class="event__section  event__section--destination">
@@ -154,7 +134,8 @@ function createFormTemplate(tripPoint,tripOffer,tripDestination) {
           <div class="event__photos-tape">
             <img class="event__photo" src=${destinationObj.pictures[0].srс} alt=${destinationObj.pictures[0].description}>
             <img class="event__photo" src=${destinationObj.pictures[1].srс} alt=${destinationObj.pictures[1].description}>
-            <img class="event__photo" src=${destinationObj.pictures[0].srс} alt=${destinationObj.pictures[0].description}>
+            <img class="event__photo" src=${destinationObj.pictures[2].srс} alt=${destinationObj.pictures[2].description}>
+            <img class="event__photo" src=${destinationObj.pictures[3].srс} alt=${destinationObj.pictures[3].description}>
           </div>
         </div>
       </section>
