@@ -1,6 +1,6 @@
 import { getPoint,getOffer,getDestination } from '../mocks/mock-waypoint.js';
 
-const POINT_COUNT = 3;
+const POINT_COUNT = 7;
 
 export default class PointsModel {
   point = Array.from({length: POINT_COUNT},getPoint);

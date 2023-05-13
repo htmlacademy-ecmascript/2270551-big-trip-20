@@ -1,17 +1,6 @@
 import { getRandomNumber,getRandomArrayElement } from '../utils.js';
 import { DESTINITIONS, DESCRIPTIONS } from '../consts.js';
 
-const DEFAULT_WAYPOINT = {
-  id: '',
-  basePrice: 0,
-  dateFrom: '',
-  dateTo: '',
-  destination: '',
-  isFavorite: false,
-  offers: [],
-  type: '',
-};
-
 const mockPoints = [
   {
     id: '1',
@@ -167,23 +156,23 @@ const mockDestinations = [
     name: getRandomArrayElement(DESTINITIONS),
     pictures: [
       {
-        //srс: 'https://loremflickr.com/248/152?random=1',
-        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        srс: 'https://loremflickr.com/248/152?random=1',
+        //src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
         description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
-        //srс: 'https://loremflickr.com/248/152?random=3',
-        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        srс: 'https://loremflickr.com/248/152?random=3',
+        //src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
         description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
-        //srс: 'https://loremflickr.com/248/152?random=4',
-        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        srс: 'https://loremflickr.com/248/152?random=4',
+        //src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
         description: getRandomArrayElement(DESCRIPTIONS),
       },
       {
-        //srс: 'https://loremflickr.com/248/152?random=5',
-        src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
+        srс: 'https://loremflickr.com/248/152?random=5',
+        //src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
         description: getRandomArrayElement(DESCRIPTIONS),
       }
     ]
@@ -449,4 +438,4 @@ function getDestination() {
   return mockDestinations;
 }
 
-export {DEFAULT_WAYPOINT, getPoint, getOffer, getDestination};
+export { getPoint, getOffer, getDestination};
