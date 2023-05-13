@@ -1,4 +1,4 @@
-import { DateFormats } from '../const.js';
+import { DateFormats } from '../consts.js';
 import { transformDate, getDuration } from '../utils.js';
 import { createElement } from '../render.js';
 

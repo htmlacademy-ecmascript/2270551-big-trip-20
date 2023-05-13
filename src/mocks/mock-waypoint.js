@@ -1,7 +1,7 @@
-import { getRandomNumber,getRandomArrayElement } from '../utils.js';
-import { DESTINITIONS, DESCRIPTIONS } from '../consts.js';
+import { /*getRandomNumber,*/getRandomArrayElement } from '../utils.js';
+//import { DESTINITIONS, DESCRIPTIONS } from '../consts.js';
 
-const mockPoints = [
+/*const mockPoints = [
   {
     id: '1',
     'basePrice': 6318,
@@ -92,10 +92,10 @@ const mockPoints = [
     'offers': [1, 2, 3],
     'type': 'ship',
   },
-];
+]; */
 
 
-const mockDestinations = [
+/*const mockDestinations = [
   {
     id: '0',
     description:getRandomArrayElement(DESCRIPTIONS),
@@ -231,7 +231,7 @@ const mockDestinations = [
       }
     ]
   }
-];
+]; */
 
 const mockOffers = [
   {
@@ -426,16 +426,16 @@ const mockOffers = [
 ];
 
 
-function getPoint(){
+/*function getPoint(){
   return getRandomArrayElement(mockPoints);
-}
+}*/
 
 function getOffer() {
   return getRandomArrayElement(mockOffers);
 }
 
-function getDestination() {
+/*function getDestination() {
   return mockDestinations;
-}
+} */
 
-export { getPoint, getOffer, getDestination};
+export { /*getPoint,*/ getOffer, /*getDestination*/};

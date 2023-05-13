@@ -1,5 +1,5 @@
 import { getRandomArrayElement } from '../utils.js';
-import { WAYPOINT_TYPES } from '../const.js';
+import { WAYPOINT_TYPES } from '../consts.js';
 
 const OFFERS_NUMBER = 5;
 
@@ -25,7 +25,6 @@ function createMockOffers() {
   }
   return offers;
 }
-
 function createMockOffersByTypes() {
   const mockOffers = new Map();
   WAYPOINT_TYPES.forEach((type) => mockOffers.set(type, createMockOffers()));

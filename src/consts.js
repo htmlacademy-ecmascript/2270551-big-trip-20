@@ -1,9 +1,96 @@
 const WAYPOINT_TYPES = [
-  'Taxi', 'Bus', 'Train', 'Ship', 'Drive', 'Flight', 'Check-in', 'Sightseeing', 'Restaurant'
+  'taxi',
+  'bus',
+  'train',
+  'ship',
+  'drive',
+  'flight',
+  'check-in',
+  'sightseeing',
+  'restaurant',
 ];
 
+const FILTERS_NAMES = ['everything', 'future', 'present', 'past'];
+
+const SORTING_NAMES = ['day', 'event', 'time', 'price', 'offers'];
+
+const DateFormats = {
+  FOR_FORM: 'DD/MM/YY h:mm',
+  FULL: 'YYYY-MM-DDTHH:mm',
+  DAY_MACHINE: 'YYYY-MM-DD',
+  DAY_HUMAN: 'D MMMM',
+  TIME: 'h:mm',
+};
+
+const EMPTY_EVENT = {
+  type: WAYPOINT_TYPES[0],
+  destination: '',
+  basePrice: 0,
+  dateFrom: new Date(),
+  dateTo: new Date(),
+  offers: [],
+  isFavorite: false,
+};
+
+export { WAYPOINT_TYPES, FILTERS_NAMES, SORTING_NAMES, DateFormats, EMPTY_EVENT };
+
+/*const WAYPOINT_TYPES = [
+  'Taxi',
+  'Bus',
+  'Train',
+  'Ship',
+  'Drive',
+  'Flight',
+  'Check-in',
+  'Sightseeing',
+  'Restaurant'
+];
+
+
+const FILTERS_NAMES = ['everything', 'future', 'present', 'past'];
+
+const SORTING_NAMES = ['day', 'event', 'time', 'price', 'offers'];
+
+const DateFormats = {
+  FOR_FORM: 'DD/MM/YY h:mm',
+  FULL: 'YYYY-MM-DDTHH:mm',
+  DAY_MACHINE: 'YYYY-MM-DD',
+  DAY_HUMAN: 'D MMMM',
+  TIME: 'h:mm',
+};
+
+const DEFAULT_WAYPOINT = {
+  type: WAYPOINT_TYPES[0],
+  destination: '',
+  basePrice: 0,
+  dateFrom: new Date(),
+  dateTo: new Date(),
+  offers: [],
+  isFavorite: false,
+};
+
+export { WAYPOINT_TYPES, FILTERS_NAMES, SORTING_NAMES, DateFormats, DEFAULT_WAYPOINT }; */
+
+/*
+
+const DateFormats = {
+  FOR_FORM: 'DD/MM/YY h:mm',
+  FULL: 'YYYY-MM-DDTHH:mm',
+  DAY_MACHINE: 'YYYY-MM-DD',
+  DAY_HUMAN: 'D MMMM',
+  TIME: 'h:mm',
+};
+
+const FILTERS_NAMES = ['everything', 'future', 'present', 'past'];
+
+const SORTING_NAMES = ['day', 'event', 'time', 'price', 'offers'];
+
 const DESTINITIONS = [
-  'Amsterdam', 'Krasnodar', 'Rostov-on-Done', 'New York', 'Moscow'
+  'Amsterdam',
+  'Krasnodar',
+  'Rostov-on-Done',
+  'New York',
+  'Moscow'
 ];
 
 const DESCRIPTIONS = [
@@ -127,4 +214,4 @@ const Offers = [
 ];
 
 
-export {Offers,WAYPOINT_TYPES,DESTINITIONS,DESCRIPTIONS};
+export {Offers,WAYPOINT_TYPES,FILTERS_NAMES, SORTING_NAMES, DEFAULT_WAYPOINT, DateFormats,DESTINITIONS,DESCRIPTIONS};*/

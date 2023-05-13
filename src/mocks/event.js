@@ -1,4 +1,4 @@
-import { WAYPOINT_TYPES } from '../const.js';
+import { WAYPOINT_TYPES } from '../consts.js';
 import { DESTINATIONS_TITLES } from './destinations.js';
 import { getRandomArrayElement } from '../utils.js';
 

@@ -1,10 +1,10 @@
 import EventsModel from '../model/events-model.js';
 import OffersModel from '../model/offers-model.js';
 import DestinationsModel from '../model/destinations-model.js';
-import TripInfoView from '../view/trip-info-view.js';
+import TripInfoView from '../view/trip-info.js';
 import FiltersPresenter from './filters-presenter.js';
-import SortingPresenter from './sorting-presenter.js';
-import EventsPresenter from './events-presenter.js';
+import SortingPresenter from './sort-presenter.js';
+import EventsPresenter from './event-presenter.js';
 import { render, RenderPosition } from '../render.js';
 
 export default class AppPresenter {

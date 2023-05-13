@@ -1,4 +1,4 @@
-import { WAYPOINT_TYPES, DEFAULT_WAYPOINT, DateFormats } from '../const.js';
+import { WAYPOINT_TYPES, EMPTY_EVENT, DateFormats } from '../consts.js';
 import { createElement } from '../render.js';
 import { startStringWithCapital, transformDate } from '../utils.js';
 
@@ -38,6 +38,7 @@ function createDestinationInfoTemplate(destination) {
           </section>`;
 }
 
+
 function createOffersItemTemplate({ offer, isSelected }) {
   const { title, price } = offer;
   const selectedAttribute = isSelected ? 'checked' : '';
@@ -68,7 +69,7 @@ function createDataListItemTemplate(title) {
   return `<option value='${title}'></option>`;
 }
 
-function createFormTemplate({ event = DEFAULT_WAYPOINT, typeOffers = [], destinations }) {
+function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations }) {
   const { type, destination, dateFrom, dateTo, basePrice, offers } = event;
 
   const dataListTemplate = Array.from(destinations.keys())
@@ -137,7 +138,13 @@ function createFormTemplate({ event = DEFAULT_WAYPOINT, typeOffers = [], destina
                 </button>
               </header>
               <section class="event__details">
-                ${offersTemplate}
+                <section class="event__section  event__section--offers">
+                 <h3 class="event__section-title  event__section-title--offers">Offers</h3>
+
+                   <div class="event__available-offers">
+                   ${offersTemplate}
+                   </div>
+                </section>
                 ${destinationInfoTemplate}
               </section>
             </form>

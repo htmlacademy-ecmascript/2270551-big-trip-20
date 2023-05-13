@@ -1,19 +1,16 @@
-import {render, RenderPosition} from './render.js';
-import FilterView from './view/filter-view.js';
-import InfoView from './view/trip-info.js';
-import ButtonView from './view/new-task-button-view.js';
-import BoarderPresenter from './presenter/trip-presenter.js';
-import PointsModel from './model/model-waypoint.js';
+import AppPresenter from './presenter/app-presenter';
 
 
-const tripFilters = document.querySelector('.trip-controls__filters');
-const tripMain = document.querySelector('.trip-main');
-const tripEvents = document.querySelector('.trip-events');
-const pointsModel = new PointsModel;
-const boarderPresenter = new BoarderPresenter({container:tripEvents,pointsModel});
+const tripMainElement = document.querySelector('.trip-main');
+const filtersElement = tripMainElement.querySelector('.trip-controls__filters');
+const siteMainElement = document.querySelector('.trip-events');
 
-render(new InfoView(), tripMain, RenderPosition.AFTERBEGIN);
-render(new FilterView(), tripFilters);
-render(new ButtonView(), tripMain);
-boarderPresenter.init();
+const appComponent = new AppPresenter({
+  tripMainElement,
+  filtersElement,
+  siteMainElement
+});
+
+appComponent.init();
+
 

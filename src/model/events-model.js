@@ -1,4 +1,4 @@
-import { getRandomEvent } from '../mock/event.js';
+import { getRandomEvent } from '../mocks/event.js';
 
 const EVENTS_NUMBER = 5;
 
