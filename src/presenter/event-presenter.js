@@ -1,6 +1,6 @@
 import EventsListView from '../view/events-list-view.js';
 import EventView from '../view/event-view.js';
-import FormPresenter from './board-presenter.js';
+//import FormPresenter from './board-presenter.js';
 import { render } from '../render.js';
 
 export default class EventsPresenter {
@@ -20,13 +20,14 @@ export default class EventsPresenter {
 
     render(this.eventsListComponent, this.container);
 
-    this.formComponent = new FormPresenter({
+    // создание формы для заполнения точки маршрута
+    /*this.formComponent = new FormPresenter({
       container: this.eventsListComponent.getElement(),
       event: this.events[0],
       typeOffers: this.offers.get(this.events[0].type),
       destinations: this.destinations,
     });
-    this.formComponent.init();
+    this.formComponent.init();*/
 
     for (let i = 1; i < this.events.length; i++) {
       const event = this.events[i];
