@@ -12,10 +12,20 @@ function createTripInfoTemplate() {
           </section>`;
 }
 
+//function createNewTripButton(){
+//  return `<div class="trip-main">
+//            <button class="trip-main__event-add-btn  btn  btn--big  btn--yellow" type="button">New event</button>
+//         </div>`;
+//}
+
 export default class TripInfoView {
   getTemplate() {
     return createTripInfoTemplate();
   }
+
+  //getButton(){
+  //  return createNewTripButton();
+  //}
 
   getElement() {
     if (!this.element) {

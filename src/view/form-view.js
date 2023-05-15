@@ -127,7 +127,6 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
   const offersTemplate = typeOffers.length
     ? createOffersTemplate({ allOffers: typeOffers, selectedOffersIds: offers })
     : '';
-  console.log(offers)
 
   const destinationInfo = destinations.get(destination);
   const destinationInfoTemplate = destinationInfo
@@ -189,7 +188,7 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
                    <div class="event__available-offers">
 
                    ${offers ? createOffersTemplate(offers) : ''}
-
+                   ${offersTemplate}
                    </div>
                 </section>
                 ${destinationInfoTemplate}
