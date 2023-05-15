@@ -1,6 +1,7 @@
 import { WAYPOINT_TYPES, EMPTY_EVENT, DateFormats } from '../consts.js';
 import { createElement } from '../render.js';
-import { startStringWithCapital, transformDate } from '../utils.js';
+import { getRandomArrayElement, startStringWithCapital, transformDate } from '../utils.js';
+import {OFFERS_TITLES, OFFERS_PRICES } from '../mocks/offers.js';
 
 function createTypesListItemTemplate(title) {
   return `<div class="event__type-item">
@@ -8,9 +9,24 @@ function createTypesListItemTemplate(title) {
             <label class="event__type-label  event__type-label--${title}" for="event-type-${title}-1">
               ${startStringWithCapital(title)}
             </label>
+
           </div>`;
 }
 
+// район оферов в форме новой точки, описанте точки назначения в форме новой точки
+function createDestinationInfoTemplate(destination) {
+  const { description, pictures } = destination;
+
+  const picturesTemplate = pictures ? createPicturesListTemplate(pictures) : '';
+
+  return `<section class="event__section  event__section--destination">
+            <h3 class="event__section-title  event__section-title--destination">Destination</h3>
+            <p class="event__destination-description">${description}</p>
+            ${picturesTemplate}
+          </section>`;
+}
+
+// отображение картинок в форме новой точки- места назначения
 function createPicturesListTemplate(pictures) {
   const listItemsTemplate = pictures
     .map(
@@ -26,45 +42,46 @@ function createPicturesListTemplate(pictures) {
           </div>`;
 }
 
-function createDestinationInfoTemplate(destination) {
-  const { description, pictures } = destination;
+/*function createOffersTemplate(offersList) {
+  return offersList.map(() =>
+    `<div class="event__offer-selector">
+       <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage-1"}>
+       <label class="event__offer-label" for="event-offer-luggage-1">
+         <span class="event__offer-title">${getRandomArrayElement(OFFERS_TITLES)}</span>
+         &plus;&euro;&nbsp;
+         <span class="event__offer-price">${getRandomArrayElement(OFFERS_PRICES)}</span>
+       </label>
+     </div>`).join('');
+}*/
 
-  const picturesTemplate = pictures ? createPicturesListTemplate(pictures) : '';
-
-  return `<section class="event__section  event__section--destination">
-            <h3 class="event__section-title  event__section-title--destination">Destination</h3>
-            <p class="event__destination-description">${description}</p>
-            ${picturesTemplate}
-          </section>`;
-}
-
-
-function createOffersItemTemplate({ offer, isSelected }) {
-  const { title, price } = offer;
+// отрисовка кнопок офферсов (дополнительных предложений) в форме новой точки
+/*function createOffersTemplate(offersList, isSelected) {
   const selectedAttribute = isSelected ? 'checked' : '';
-  return `<div class="event__offer-selector">
-            <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" ${selectedAttribute}>
-            <label class="event__offer-label" for="event-offer-luggage-1">
-              <span class="event__offer-title">${title}</span>
-              &plus;&euro;&nbsp;
-              <span class="event__offer-price">${price}</span>
-            </label>
-          </div>`;
+  return offersList.map((offer) =>
+    `<div class="event__offer-selector">
+       <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1}" type="checkbox" name="event-offer-luggage-1" ${selectedAttribute}>
+       <label class="event__offer-label" for="event-offer-luggage-1">
+         <span class="event__offer-title">${getRandomArrayElement(OFFERS_TITLES)}</span>
+         &plus;&euro;&nbsp;
+         <span class="event__offer-price">${getRandomArrayElement(OFFERS_PRICES)}</span>
+       </label>
+     </div>`).join('');
+}*/
+
+function createOffersTemplate(offersList, isSelected) {
+  const selectedAttribute = isSelected ? 'checked' : '';
+  return offersList.map((offer) =>
+    `<div class="event__offer-selector">
+       <input class="event__offer-checkbox  visually-hidden" id="event-offer-${type}-${offer.id}" type="checkbox" name="event-offer-${type}" ${selectedAttribute}>
+       <label class="event__offer-label" for="event-offer-${type}-${offer.id}">
+         <span class="event__offer-title">${offer.title}</span>
+         &plus;&euro;&nbsp;
+         <span class="event__offer-price">${offer.price}</span>
+       </label>
+     </div>`).join('');
 }
 
-function createOffersTemplate({ allOffers, selectedOffersIds }) {
-  let offersItemsTemplate = '';
-  for (const [ id, offer ] of allOffers) {
-    const isSelected = selectedOffersIds.includes(id);
-    offersItemsTemplate += createOffersItemTemplate({ offer: offer, isSelected: isSelected });
-  }
-
-  return `<section class="event__section  event__section--offers">
-            <h3 class="event__section-title  event__section-title--offers">Offers</h3>
-            <div class="event__available-offers">${offersItemsTemplate}<div>
-          </section>`;
-}
-
+// отображение фильтров
 function createDataListItemTemplate(title) {
   return `<option value='${title}'></option>`;
 }
@@ -83,13 +100,14 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
   const offersTemplate = typeOffers.length
     ? createOffersTemplate({ allOffers: typeOffers, selectedOffersIds: offers })
     : '';
-
+  console.log(offers)
   const destinationInfo = destinations.get(destination);
   const destinationInfoTemplate = destinationInfo
     ? createDestinationInfoTemplate(destinationInfo)
     : '';
 
-  return `<li class="trip-events__item">
+  return `
+          <li class="trip-events__item">
             <form class="event event--edit" action="#" method="post">
               <header class="event__header">
                 <div class="event__type-wrapper">
@@ -107,7 +125,7 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
                 </div>
                 <div class="event__field-group  event__field-group--destination">
                   <label class="event__label  event__type-output" for="event-destination-1">
-                    ${startStringWithCapital(type)}
+                  ${startStringWithCapital(type)}
                   </label>
                   <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${destination}" list="destination-list-1">
                   <datalist id="destination-list-1">${dataListTemplate}</datalist>
@@ -140,9 +158,10 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
               <section class="event__details">
                 <section class="event__section  event__section--offers">
                  <h3 class="event__section-title  event__section-title--offers">Offers</h3>
-
                    <div class="event__available-offers">
-                   ${offersTemplate}
+
+                   ${offers ? createOffersTemplate(offers) : ''}
+
                    </div>
                 </section>
                 ${destinationInfoTemplate}
@@ -150,7 +169,8 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
             </form>
           </li>`;
 }
-
+//${offersTemplate}
+//${offers ? createOffersTemplate(offers) : ''}
 export default class FormView {
   constructor({ event, typeOffers, destinations }) {
     this.event = event;

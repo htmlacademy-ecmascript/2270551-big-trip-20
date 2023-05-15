@@ -1,4 +1,4 @@
-import AppPresenter from './presenter/app-presenter';
+import AppPresenter from './presenter/app-presenter.js';
 
 
 const tripMainElement = document.querySelector('.trip-main');

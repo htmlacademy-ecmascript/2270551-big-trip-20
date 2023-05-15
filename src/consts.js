@@ -34,30 +34,8 @@ const EMPTY_EVENT = {
 
 export { WAYPOINT_TYPES, FILTERS_NAMES, SORTING_NAMES, DateFormats, EMPTY_EVENT };
 
-/*const WAYPOINT_TYPES = [
-  'Taxi',
-  'Bus',
-  'Train',
-  'Ship',
-  'Drive',
-  'Flight',
-  'Check-in',
-  'Sightseeing',
-  'Restaurant'
-];
 
-
-const FILTERS_NAMES = ['everything', 'future', 'present', 'past'];
-
-const SORTING_NAMES = ['day', 'event', 'time', 'price', 'offers'];
-
-const DateFormats = {
-  FOR_FORM: 'DD/MM/YY h:mm',
-  FULL: 'YYYY-MM-DDTHH:mm',
-  DAY_MACHINE: 'YYYY-MM-DD',
-  DAY_HUMAN: 'D MMMM',
-  TIME: 'h:mm',
-};
+/*
 
 const DEFAULT_WAYPOINT = {
   type: WAYPOINT_TYPES[0],
@@ -72,35 +50,6 @@ const DEFAULT_WAYPOINT = {
 export { WAYPOINT_TYPES, FILTERS_NAMES, SORTING_NAMES, DateFormats, DEFAULT_WAYPOINT }; */
 
 /*
-
-const DateFormats = {
-  FOR_FORM: 'DD/MM/YY h:mm',
-  FULL: 'YYYY-MM-DDTHH:mm',
-  DAY_MACHINE: 'YYYY-MM-DD',
-  DAY_HUMAN: 'D MMMM',
-  TIME: 'h:mm',
-};
-
-const FILTERS_NAMES = ['everything', 'future', 'present', 'past'];
-
-const SORTING_NAMES = ['day', 'event', 'time', 'price', 'offers'];
-
-const DESTINITIONS = [
-  'Amsterdam',
-  'Krasnodar',
-  'Rostov-on-Done',
-  'New York',
-  'Moscow'
-];
-
-const DESCRIPTIONS = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  'Cras aliquet varius magna, non porta ligula feugiat eget.Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.',
-  'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.',
-  'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.',
-  'Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat.',
-  'Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.',
-];
 
 const Offers = [
   {
