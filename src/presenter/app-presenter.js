@@ -6,8 +6,10 @@ import FiltersPresenter from './filters-presenter.js';
 import SortingPresenter from './sort-presenter.js';
 import EventsPresenter from './event-presenter.js';
 import { render, RenderPosition } from '../render.js';
+//import createNewTripButton from '../presenter/button-new.js';
 
 export default class AppPresenter {
+
   eventsModel = new EventsModel();
   offersModel = new OffersModel();
   destinationsModel = new DestinationsModel();
