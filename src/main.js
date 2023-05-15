@@ -1,16 +1,16 @@
-import {render, RenderPosition} from './render';
-import FilterView from './view/filter-view';
-import InfoView from './view/trip-info';
-import ButtonView from './view/new-task-button-view';
-import WaypointsPresenter from './presenter/trip-presenter';
+import AppPresenter from './presenter/app-presenter.js';
 
 
-const tripFilters = document.querySelector('.trip-controls__filters');
-const tripMain = document.querySelector('.trip-main');
-const tripEvents = document.querySelector('.trip-events');
-const boardPresenter = new WaypointsPresenter({waypointsContainer: tripEvents});
+const tripMainElement = document.querySelector('.trip-main');
+const filtersElement = tripMainElement.querySelector('.trip-controls__filters');
+const siteMainElement = document.querySelector('.trip-events');
 
-render(new InfoView(), tripMain, RenderPosition.AFTERBEGIN);
-render(new FilterView(), tripFilters);
-render(new ButtonView(), tripMain);
-boardPresenter.init();
+const appComponent = new AppPresenter({
+  tripMainElement,
+  filtersElement,
+  siteMainElement
+});
+
+appComponent.init();
+
+
