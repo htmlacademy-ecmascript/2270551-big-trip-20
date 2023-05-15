@@ -52,12 +52,12 @@ function createPicturesListTemplate(pictures) {
          <span class="event__offer-price">${getRandomArrayElement(OFFERS_PRICES)}</span>
        </label>
      </div>`).join('');
-}*/
+} */
 
 // отрисовка кнопок офферсов (дополнительных предложений) в форме новой точки
-/*function createOffersTemplate(offersList, isSelected) {
+function createOffersTemplate(offersList, isSelected) {
   const selectedAttribute = isSelected ? 'checked' : '';
-  return offersList.map((offer) =>
+  return offersList.map(() =>
     `<div class="event__offer-selector">
        <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1}" type="checkbox" name="event-offer-luggage-1" ${selectedAttribute}>
        <label class="event__offer-label" for="event-offer-luggage-1">
@@ -66,20 +66,47 @@ function createPicturesListTemplate(pictures) {
          <span class="event__offer-price">${getRandomArrayElement(OFFERS_PRICES)}</span>
        </label>
      </div>`).join('');
-}*/
 
-function createOffersTemplate(offersList, isSelected) {
+}
+
+/*function createOffersTemplate(offersList, isSelected) {
   const selectedAttribute = isSelected ? 'checked' : '';
   return offersList.map((offer) =>
     `<div class="event__offer-selector">
-       <input class="event__offer-checkbox  visually-hidden" id="event-offer-${type}-${offer.id}" type="checkbox" name="event-offer-${type}" ${selectedAttribute}>
-       <label class="event__offer-label" for="event-offer-${type}-${offer.id}">
+       <input class="event__offer-checkbox  visually-hidden" id="event-offer" type="checkbox" name="event-offer" ${selectedAttribute}>
+       <label class="event__offer-label" for="event-offer">
          <span class="event__offer-title">${offer.title}</span>
          &plus;&euro;&nbsp;
          <span class="event__offer-price">${offer.price}</span>
        </label>
      </div>`).join('');
+}*/
+
+/*function createOffersItemTemplate({ offer, isSelected }) {
+  const { title, price } = offer;
+  const selectedAttribute = isSelected ? 'checked' : '';
+  return `<div class="event__offer-selector">
+            <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" ${selectedAttribute}>
+            <label class="event__offer-label" for="event-offer-luggage-1">
+              <span class="event__offer-title">${title}</span>
+              &plus;&euro;&nbsp;
+              <span class="event__offer-price">${price}</span>
+            </label>
+          </div>`;
 }
+
+function createOffersTemplate({ allOffers, selectedOffersIds }) {
+  let offersItemsTemplate = '';
+  for (const [ id, offer ] of allOffers) {
+    const isSelected = selectedOffersIds.includes(id);
+    offersItemsTemplate += createOffersItemTemplate({ offer: offer, isSelected: isSelected });
+  }
+
+  return `<section class="event__section  event__section--offers">
+            <h3 class="event__section-title  event__section-title--offers">Offers</h3>
+            <div class="event__available-offers">${offersItemsTemplate}<div>
+          </section>`;
+} */
 
 // отображение фильтров
 function createDataListItemTemplate(title) {
@@ -101,6 +128,7 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
     ? createOffersTemplate({ allOffers: typeOffers, selectedOffersIds: offers })
     : '';
   console.log(offers)
+
   const destinationInfo = destinations.get(destination);
   const destinationInfoTemplate = destinationInfo
     ? createDestinationInfoTemplate(destinationInfo)
