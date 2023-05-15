@@ -17,6 +17,7 @@ const mockDescriptions = [
   'Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.',
 ];
 
+//количество картинок в форме ввода
 const PICTURES_NUMBER = 4;
 
 const mockPictures = [
@@ -38,20 +39,21 @@ const mockPictures = [
   },
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Nunc fermentum tortor',
+    description: 'Nunc fermentum tortor', // описаник моковой картинки
   },
 ];
 
+// подготовка данных описания места назначения
 function createMockDestination() {
   return {
-    description: getRandomArrayElement(mockDescriptions),
+    description: getRandomArrayElement(mockDescriptions), //выборка из моковых описаний точки путешествия
     pictures: Array.from(
       { length: PICTURES_NUMBER },
-      () => getRandomArrayElement(mockPictures)
+      () => getRandomArrayElement(mockPictures) // массив-выборка из набора моковых фото
     ),
   };
 }
-
+//формирование коллекции ключ-значение для связки места назначения и его описания
 function createMockDestinations() {
   const destinations = new Map();
   DESTINATIONS_TITLES.forEach((title) => destinations.set(title, createMockDestination()));
