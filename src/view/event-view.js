@@ -2,10 +2,12 @@ import { DateFormats } from '../consts.js';
 import { transformDate, getDuration } from '../utils.js';
 import { createElement } from '../render.js';
 
+// получение выбранных предложений
 function getChosenOffers(offers, offersIds) {
   return offersIds.map((offerId) => offers.get(offerId));
 }
 
+// подготовка данных предложений (offers) в строке
 function createOfferTemplate({ title, price }) {
   return `<li class="event__offer">
             <span class="event__offer-title">${title}</span>
@@ -13,7 +15,7 @@ function createOfferTemplate({ title, price }) {
             <span class="event__offer-price">${price}</span>
           </li>`;
 }
-
+// шаблон предложений (offers)
 function createOffersTemplate({ typeOffers, offers }) {
   const offersItemsTemplate = getChosenOffers(typeOffers, offers)
     .map((offer) => createOfferTemplate(offer))
@@ -23,6 +25,7 @@ function createOffersTemplate({ typeOffers, offers }) {
           <ul class="event__selected-offers">${offersItemsTemplate}</ul>`;
 }
 
+// шаблон событий
 function createEventTemplate(event, typeOffers) {
   const { type, destination, basePrice, isFavorite, offers, dateFrom, dateTo } = event;
 
@@ -30,7 +33,7 @@ function createEventTemplate(event, typeOffers) {
 
   const favoriteClass = isFavorite ? 'event__favorite-btn--active' : '';
 
-  const duration = getDuration(dateFrom, dateTo);
+  const duration = getDuration(dateFrom, dateTo); //функция расчета длительности события из utils
 
   return `<li class="trip-events__item">
               <div class="event">
@@ -41,7 +44,7 @@ function createEventTemplate(event, typeOffers) {
                 <div class="event__type">
                   <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
                 </div>
-                <h3 class="event__title">${type} ${destination}</h3>
+                <h3 class="event__title">${type}${destination}</h3>
                 <div class="event__schedule">
                   <p class="event__time">
                     <time class="event__start-time"

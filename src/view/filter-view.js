@@ -1,6 +1,7 @@
 import { FILTERS_NAMES } from '../consts.js';
 import { createElement } from '../render.js';
 
+// шаблон фильтров
 function createFiltersItemTemplate(name) {
   return `
   <div class="trip-filters__filter">
@@ -13,7 +14,7 @@ function createFiltersTemplate() {
   const filtersItemsTemplate = FILTERS_NAMES.map((name) => createFiltersItemTemplate(name)).join('');
 
   return `<form class="trip-filters" action="#" method="get">
-            <button class="visually-hidden" type="submit">Accept filter</button>
+            <button class="visually-hidden" type="submit">Accept filter привет</button>
             ${filtersItemsTemplate}
           </form>`;
 }

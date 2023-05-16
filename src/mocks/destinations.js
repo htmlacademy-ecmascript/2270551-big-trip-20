@@ -17,29 +17,37 @@ const mockDescriptions = [
   'Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.',
 ];
 
+const picDescription = [
+  'Lorem ipsum dolor sit amet',
+  'Cras aliquet varius magna',
+  'Nullam nunc ex',
+  'Aliquam erat',
+  'Nunc fermentum tortor',
+];
+
 //количество картинок в форме ввода
 const PICTURES_NUMBER = 4;
 
 const mockPictures = [
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Lorem ipsum dolor sit amet',
+    description: getRandomArrayElement(picDescription),
   },
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Cras aliquet varius magna',
+    description: getRandomArrayElement(picDescription),
   },
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Nullam nunc ex',
+    description: getRandomArrayElement(picDescription),
   },
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Aliquam erat',
+    description: getRandomArrayElement(picDescription),
   },
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Nunc fermentum tortor', // описаник моковой картинки
+    description: getRandomArrayElement(picDescription), // описаник моковой картинки
   },
 ];
 

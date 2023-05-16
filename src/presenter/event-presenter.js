@@ -27,7 +27,7 @@ export default class EventsPresenter {
       typeOffers: this.offers.get(this.events[0].type),
       destinations: this.destinations,
     });
-    this.formComponent.init();*/
+    this.formComponent.init(); */
 
     for (let i = 1; i < this.events.length; i++) {
       const event = this.events[i];

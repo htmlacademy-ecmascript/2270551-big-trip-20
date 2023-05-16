@@ -1,5 +1,6 @@
 import { createElement } from '../render.js';
 
+// подготовка листа событий (набора строк)
 function createEventsListTemplate() {
   return '<ul class="trip-events__list"></ul>';
 }
