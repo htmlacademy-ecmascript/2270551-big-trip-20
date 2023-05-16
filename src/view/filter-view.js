@@ -14,7 +14,7 @@ function createFiltersTemplate() {
   const filtersItemsTemplate = FILTERS_NAMES.map((name) => createFiltersItemTemplate(name)).join('');
 
   return `<form class="trip-filters" action="#" method="get">
-            <button class="visually-hidden" type="submit">Accept filter привет</button>
+            <button class="visually-hidden" type="submit">Accept filter</button>
             ${filtersItemsTemplate}
           </form>`;
 }
