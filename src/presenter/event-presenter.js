@@ -34,7 +34,7 @@ export default class EventsPresenter {
       const typeOffers = this.offers.get(event.type);
       render(
         new EventView({ event: event, typeOffers: typeOffers }),
-        this.eventsListComponent.getElement()
+        this.eventsListComponent.element()
       );
     }
   }

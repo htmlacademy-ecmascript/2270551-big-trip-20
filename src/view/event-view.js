@@ -1,7 +1,7 @@
-//import AbstractView from '../framework/view/abstract-view.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import { DateFormats } from '../consts.js';
 import { transformDate, getDuration } from '../utils.js';
-import { createElement } from '../framework/render.js';
+//import { createElement } from '../framework/render.js';
 //import {render} from '../framework/render.js';
 
 // получение выбранных предложений
@@ -78,7 +78,7 @@ function createEventTemplate(event, typeOffers) {
             </li>`;
 }
 
-/*export default class EventView extends AbstractView {
+export default class EventView extends AbstractView {
   #event = null;
   #destinations = null;
   #typeOffers = null;
@@ -92,24 +92,24 @@ function createEventTemplate(event, typeOffers) {
     this.#typeOffers = typeOffers;
     this.#element = element;
     this.#onEditClick = onEditClick;
-    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#EditClickHandler);
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
   }
 
   get template() {
     return createEventTemplate(
       this.#event,
-      element: this.#element,
+      this.#element,
       this.#destinations,
       this.#typeOffers);
   }
 
-  #EditClickHandler = (evt) => {
+  #editClickHandler = (evt) => {
     evt.preventDefault();
     this.#onEditClick();
   };
-}*/
+}
 
-export default class EventView {
+/*export default class EventView {
 
   constructor({ event, typeOffers }) {
     this.event = event;
@@ -131,4 +131,4 @@ export default class EventView {
   removeElement() {
     this.element = null;
   }
-}
+}*/
