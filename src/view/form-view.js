@@ -1,3 +1,4 @@
+//import AbstractView from '../framework/view/abstract-view.js';
 import { WAYPOINT_TYPES, EMPTY_EVENT, DateFormats } from '../consts.js';
 import { createElement } from '../render.js';
 import { getRandomArrayElement, startStringWithCapital, transformDate } from '../utils.js';

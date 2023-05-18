@@ -1,12 +1,12 @@
 import EventsModel from '../model/events-model.js';
 import OffersModel from '../model/offers-model.js';
 import DestinationsModel from '../model/destinations-model.js';
-import TripInfoView from '../view/trip-info.js';
-import FiltersPresenter from './filters-presenter.js';
+import TripInfoView from '../view/trip-info-view.js';
+//import FiltersPresenter from './filters-presenter.js';
 import SortingPresenter from './sort-presenter.js';
 import EventsPresenter from './event-presenter.js';
-import { render, RenderPosition } from '../render.js';
-//import createNewTripButton from '../presenter/button-new.js';
+import { render, RenderPosition } from '../framework/render.js';
+
 
 export default class AppPresenter {
 
@@ -21,9 +21,9 @@ export default class AppPresenter {
   }
 
   init() {
-    this.filtersComponent = new FiltersPresenter({
+    /*this.filtersComponent = new FiltersPresenter({
       container: this.filtersElement,
-    });
+    });*/
     this.sortingComponent = new SortingPresenter({
       container: this.siteMainElement,
     });
@@ -34,7 +34,7 @@ export default class AppPresenter {
       destinationsModel: this.destinationsModel,
     });
     render(new TripInfoView(), this.tripMainElement, RenderPosition.AFTERBEGIN);
-    this.filtersComponent.init();
+    //this.filtersComponent.init();
     this.sortingComponent.init();
     this.eventsComponent.init();
   }

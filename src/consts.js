@@ -12,6 +12,13 @@ const WAYPOINT_TYPES = [
 
 const FILTERS_NAMES = ['everything', 'future', 'present', 'past'];
 
+/*const FilterType = {
+  EVERYTHING: 'everything',
+  FUTURE: 'future',
+  PRESENT: 'present',
+  PAST: 'past',
+};*/
+
 const SORTING_NAMES = ['day', 'event', 'time', 'price', 'offers'];
 
 const DateFormats = {

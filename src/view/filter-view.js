@@ -1,39 +1,32 @@
-import { FILTERS_NAMES } from '../consts.js';
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
-// шаблон фильтров
-function createFiltersItemTemplate(name) {
-  return `
-  <div class="trip-filters__filter">
-            <input id="filter-${name}" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="${name}">
-            <label class="trip-filters__filter-label" for="filter-${name}">${name}</label>
-          </div>`;
-}
+const createFiltersTemlpate = () =>
+  `<form class="trip-filters" action="#" method="get">
+    <div class="trip-filters__filter">
+      <input id="filter-everything" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="everything" checked>
+      <label class="trip-filters__filter-label" for="filter-everything">Everything</label>
+    </div>
 
-function createFiltersTemplate() {
-  const filtersItemsTemplate = FILTERS_NAMES.map((name) => createFiltersItemTemplate(name)).join('');
+    <div class="trip-filters__filter">
+      <input id="filter-future" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="future">
+      <label class="trip-filters__filter-label" for="filter-future">Future</label>
+    </div>
 
-  return `<form class="trip-filters" action="#" method="get">
-            <button class="visually-hidden" type="submit">Accept filter</button>
-            ${filtersItemsTemplate}
-          </form>`;
-}
+    <div class="trip-filters__filter">
+      <input id="filter-present" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="present">
+      <label class="trip-filters__filter-label" for="filter-present">Present</label>
+    </div>
 
-export default class FiltersView {
-  getTemplate() {
-    return createFiltersTemplate();
-  }
+    <div class="trip-filters__filter">
+      <input id="filter-past" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="past">
+      <label class="trip-filters__filter-label" for="filter-past">Past</label>
+    </div>
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
+    <button class="visually-hidden" type="submit">Accept filter</button>
+  </form>`;
 
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
+export default class FiltersView extends AbstractView {
+  get template() {
+    return createFiltersTemlpate();
   }
 }
-

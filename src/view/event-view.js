@@ -1,6 +1,8 @@
+//import AbstractView from '../framework/view/abstract-view.js';
 import { DateFormats } from '../consts.js';
 import { transformDate, getDuration } from '../utils.js';
-import { createElement } from '../render.js';
+import { createElement } from '../framework/render.js';
+//import {render} from '../framework/render.js';
 
 // получение выбранных предложений
 function getChosenOffers(offers, offersIds) {
@@ -44,7 +46,7 @@ function createEventTemplate(event, typeOffers) {
                 <div class="event__type">
                   <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
                 </div>
-                <h3 class="event__title">${type}${destination}</h3>
+                <h3 class="event__title">${type} ${destination}</h3>
                 <div class="event__schedule">
                   <p class="event__time">
                     <time class="event__start-time"
@@ -75,6 +77,37 @@ function createEventTemplate(event, typeOffers) {
               </div>
             </li>`;
 }
+
+/*export default class EventView extends AbstractView {
+  #event = null;
+  #destinations = null;
+  #typeOffers = null;
+  #onEditClick = null;
+  #element = null;
+
+  constructor({event, destinations, typeOffers, element, onEditClick}) {
+    super();
+    this.#event = event;
+    this.#destinations = destinations;
+    this.#typeOffers = typeOffers;
+    this.#element = element;
+    this.#onEditClick = onEditClick;
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#EditClickHandler);
+  }
+
+  get template() {
+    return createEventTemplate(
+      this.#event,
+      element: this.#element,
+      this.#destinations,
+      this.#typeOffers);
+  }
+
+  #EditClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#onEditClick();
+  };
+}*/
 
 export default class EventView {
 
