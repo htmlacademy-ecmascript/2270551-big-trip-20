@@ -83,130 +83,18 @@ export default class EventView extends AbstractView {
   #onEditClick = null;
   //#element = null;
 
-  constructor({event, /*destinations,*/ typeOffers, /*element,*/ onEditClick}) {
+  constructor({event, typeOffers, onEditClick}) {
     super();
     this.#event = event;
     //this.#destinations = destinations;
     this.#typeOffers = typeOffers;
     //this.#element = element;
     this.#onEditClick = onEditClick;
-    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#EditClickHandler);
-  }
-
-  get template() {
-    return createEventTemplate(this.#event, this.#typeOffers);
-  }
-
-  #EditClickHandler = (evt) => {
-    evt.preventDefault();
-    this.#onEditClick();
-  };
-}
-
-
-/*import AbstractView from '../framework/view/abstract-view.js';
-import { DateFormats } from '../consts.js';
-import { transformDate, getDuration } from '../utils.js';
-//import { createElement } from '../framework/render.js';
-//import {render} from '../framework/render.js';
-
-// получение выбранных предложений
-function getChosenOffers(offers, offersIds) {
-  return offersIds.map((offerId) => offers.get(offerId));
-}
-
-// подготовка данных предложений (offers) в строке
-function createOfferTemplate({ title, price }) {
-  return `<li class="event__offer">
-            <span class="event__offer-title">${title}</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">${price}</span>
-          </li>`;
-}
-// шаблон предложений (offers)
-function createOffersTemplate({ typeOffers, offers }) {
-  const offersItemsTemplate = getChosenOffers(typeOffers, offers)
-    .map((offer) => createOfferTemplate(offer))
-    .join('');
-
-  return `<h4 class="visually-hidden">Offers:</h4>
-          <ul class="event__selected-offers">${offersItemsTemplate}</ul>`;
-}
-
-// шаблон событий
-function createEventTemplate(event, typeOffers) {
-  const { type, destination, basePrice, isFavorite, offers, dateFrom, dateTo } = event;
-
-  const offersTemplate = offers.length ? createOffersTemplate({ typeOffers: typeOffers, offers: offers }) : '';
-
-  const favoriteClass = isFavorite ? 'event__favorite-btn--active' : '';
-
-  const duration = getDuration(dateFrom, dateTo); //функция расчета длительности события из utils
-
-  return `<li class="trip-events__item">
-              <div class="event">
-                <time class="event__date"
-                  datetime="${transformDate(dateFrom,DateFormats.DAY_MACHINE)}">
-                  ${transformDate(dateFrom, DateFormats.DAY_HUMAN)}
-                </time>
-                <div class="event__type">
-                  <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
-                </div>
-                <h3 class="event__title">${type} ${destination}</h3>
-                <div class="event__schedule">
-                  <p class="event__time">
-                    <time class="event__start-time"
-                      datetime="${transformDate(dateFrom, DateFormats.FULL)}">
-                      ${transformDate(dateFrom, DateFormats.TIME)}
-                    </time>
-                    &mdash;
-                    <time class="event__end-time"
-                      datetime="${transformDate(dateTo, DateFormats.FULL)}">
-                      ${transformDate(dateTo, DateFormats.TIME)}
-                    </time>
-                  </p>
-                  <p class="event__duration">${duration}</p>
-                </div>
-                <p class="event__price">
-                  &euro;&nbsp;<span class="event__price-value">${basePrice}</span>
-                </p>
-                  ${offersTemplate}
-                <button class="event__favorite-btn ${favoriteClass}" type="button">
-                  <span class="visually-hidden">Add to favorite</span>
-                  <svg class="event__favorite-icon" width="28" height="28" viewBox="0 0 28 28">
-                    <path d="M14 21l-8.22899 4.3262 1.57159-9.1631L.685209 9.67376 9.8855 8.33688 14 0l4.1145 8.33688 9.2003 1.33688-6.6574 6.48934 1.5716 9.1631L14 21z"/>
-                  </svg>
-                </button>
-                <button class="event__rollup-btn" type="button">
-                  <span class="visually-hidden">Open event</span>
-                </button>
-              </div>
-            </li>`;
-}
-
-export default class EventView extends AbstractView {
-  #event = null;
-  #destinations = null;
-  #typeOffers = null;
-  #onEditClick = null;
-  #element = null;
-
-  constructor({event, destinations, typeOffers, element, onEditClick}) {
-    super();
-    this.#event = event;
-    this.#destinations = destinations;
-    this.#typeOffers = typeOffers;
-    this.#element = element;
-    this.#onEditClick = onEditClick;
     this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
   }
 
   get template() {
-    return createEventTemplate(
-      this.#event,
-      //this.#element,
-      //this.#destinations,
-      this.#typeOffers);
+    return createEventTemplate(this.#event, this.#typeOffers);
   }
 
   #editClickHandler = (evt) => {
@@ -237,4 +125,4 @@ export default class EventView extends AbstractView {
   removeElement() {
     this.element = null;
   }
-}*/
+} */

@@ -16,4 +16,3 @@ const appComponent = new AppPresenter({
 appComponent.init();
 filterPresenter.init();
 
-
