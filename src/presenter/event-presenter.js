@@ -1,8 +1,8 @@
 import EventsListView from '../view/events-list-view.js';
 import EventView from '../view/event-view.js';
 //import FormPresenter from './board-presenter.js';
-import { render } from '../render.js';
-//import {render} from '../framework/render.js';
+//import { render } from '../render.js';
+import {render} from '../framework/render.js';
 export default class EventsPresenter {
   eventsListComponent = new EventsListView();
 
