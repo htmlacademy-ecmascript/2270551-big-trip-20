@@ -15,12 +15,14 @@ export default class AppPresenter {
   destinationsModel = new DestinationsModel();
 
   constructor({ tripMainElement, filtersElement, siteMainElement }) {
-    this.tripMainElement = tripMainElement;
-    this.filtersElement = filtersElement;
-    this.siteMainElement = siteMainElement;
+    this.tripMainElement = tripMainElement; //создание ДОМ шапка сайта
+    this.filtersElement = filtersElement; //создание ДОМ фильтры
+    this.siteMainElement = siteMainElement; //создание ДОМ сортирока
+
   }
 
   init() {
+
     this.filtersComponent = new FiltersPresenter({
       container: this.filtersElement,
     });
@@ -37,5 +39,7 @@ export default class AppPresenter {
     this.filtersComponent.init();
     this.sortingComponent.init();
     this.eventsComponent.init();
+
   }
+
 }

@@ -13,5 +13,6 @@ export default class FormPresenter {
     this.formComponent = new FormView({ event: this.event, typeOffers: this.typeOffers, destinations: this.destinations });
     render(this.formComponent, this.container);
   }
+
 }
 
