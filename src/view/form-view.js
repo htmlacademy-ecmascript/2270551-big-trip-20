@@ -1,6 +1,5 @@
-//import AbstractView from '../framework/view/abstract-view.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import { WAYPOINT_TYPES, EMPTY_EVENT, DateFormats } from '../consts.js';
-import { createElement } from '../render.js';
 import { getRandomArrayElement, startStringWithCapital, transformDate } from '../utils.js';
 import {OFFERS_TITLES, OFFERS_PRICES } from '../mocks/offers.js';
 
@@ -43,18 +42,6 @@ function createPicturesListTemplate(pictures) {
           </div>`;
 }
 
-/*function createOffersTemplate(offersList) {
-  return offersList.map(() =>
-    `<div class="event__offer-selector">
-       <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage-1"}>
-       <label class="event__offer-label" for="event-offer-luggage-1">
-         <span class="event__offer-title">${getRandomArrayElement(OFFERS_TITLES)}</span>
-         &plus;&euro;&nbsp;
-         <span class="event__offer-price">${getRandomArrayElement(OFFERS_PRICES)}</span>
-       </label>
-     </div>`).join('');
-} */
-
 // отрисовка кнопок офферсов (дополнительных предложений) в форме новой точки
 function createOffersTemplate(offersList, isSelected) {
   const selectedAttribute = isSelected ? 'checked' : '';
@@ -69,45 +56,6 @@ function createOffersTemplate(offersList, isSelected) {
      </div>`).join('');
 
 }
-
-/*function createOffersTemplate(offersList, isSelected) {
-  const selectedAttribute = isSelected ? 'checked' : '';
-  return offersList.map((offer) =>
-    `<div class="event__offer-selector">
-       <input class="event__offer-checkbox  visually-hidden" id="event-offer" type="checkbox" name="event-offer" ${selectedAttribute}>
-       <label class="event__offer-label" for="event-offer">
-         <span class="event__offer-title">${offer.title}</span>
-         &plus;&euro;&nbsp;
-         <span class="event__offer-price">${offer.price}</span>
-       </label>
-     </div>`).join('');
-}*/
-
-/*function createOffersItemTemplate({ offer, isSelected }) {
-  const { title, price } = offer;
-  const selectedAttribute = isSelected ? 'checked' : '';
-  return `<div class="event__offer-selector">
-            <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" ${selectedAttribute}>
-            <label class="event__offer-label" for="event-offer-luggage-1">
-              <span class="event__offer-title">${title}</span>
-              &plus;&euro;&nbsp;
-              <span class="event__offer-price">${price}</span>
-            </label>
-          </div>`;
-}
-
-function createOffersTemplate({ allOffers, selectedOffersIds }) {
-  let offersItemsTemplate = '';
-  for (const [ id, offer ] of allOffers) {
-    const isSelected = selectedOffersIds.includes(id);
-    offersItemsTemplate += createOffersItemTemplate({ offer: offer, isSelected: isSelected });
-  }
-
-  return `<section class="event__section  event__section--offers">
-            <h3 class="event__section-title  event__section-title--offers">Offers</h3>
-            <div class="event__available-offers">${offersItemsTemplate}<div>
-          </section>`;
-} */
 
 // отображение фильтров
 function createDataListItemTemplate(title) {
@@ -199,7 +147,32 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
 }
 //${offersTemplate}
 //${offers ? createOffersTemplate(offers) : ''}
-export default class FormView {
+
+export default class FormView extends AbstractView {
+  #event = null;
+  #typeOffers = null;
+  #destinations = null;
+
+  constructor({ event, typeOffers, destinations }) {
+    super();
+    this.#event = event;
+    this.#typeOffers = typeOffers;
+    this.#destinations = destinations;
+    //this.event = event;
+    //this.typeOffers = typeOffers;
+    //this.destinations = destinations;
+  }
+
+  get template() {
+    return createFormTemplate(this.#event, this.#typeOffers, this.#destinations);
+  }
+
+  removeElement() {
+    this.element = null;
+  }
+}
+
+/*export default class FormView {
   constructor({ event, typeOffers, destinations }) {
     this.event = event;
     this.typeOffers = typeOffers;
@@ -225,4 +198,4 @@ export default class FormView {
   removeElement() {
     this.element = null;
   }
-}
+}*/

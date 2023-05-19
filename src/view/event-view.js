@@ -78,17 +78,17 @@ function createEventTemplate(event, typeOffers) {
 
 export default class EventView extends AbstractView {
   #event = null;
-  //#destinations = null;
+  #destinations = null;
   #typeOffers = null;
   #onEditClick = null;
-  //#element = null;
+  #element = null;
 
-  constructor({event, typeOffers, onEditClick}) {
+  constructor({event, destinations, typeOffers, element, onEditClick}) {
     super();
     this.#event = event;
-    //this.#destinations = destinations;
+    this.#destinations = destinations;
     this.#typeOffers = typeOffers;
-    //this.#element = element;
+    this.#element = element;
     this.#onEditClick = onEditClick;
     this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
   }
@@ -102,27 +102,3 @@ export default class EventView extends AbstractView {
     this.#onEditClick();
   };
 }
-
-/*export default class EventView {
-
-  constructor({ event, typeOffers }) {
-    this.event = event;
-    this.typeOffers = typeOffers;
-  }
-
-  getTemplate() {
-    return createEventTemplate(this.event, this.typeOffers);
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
-} */
