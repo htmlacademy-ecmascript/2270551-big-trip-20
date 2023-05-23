@@ -152,24 +152,26 @@ export default class FormView extends AbstractView {
   #event = null;
   #typeOffers = null;
   #destinations = null;
+  #onEditClick = null;
 
-  constructor({ event, typeOffers, destinations }) {
+  constructor({ event, typeOffers, destinations, onEditClick }) {
     super();
     this.#event = event;
     this.#typeOffers = typeOffers;
     this.#destinations = destinations;
-    //this.event = event;
-    //this.typeOffers = typeOffers;
-    //this.destinations = destinations;
-  }
+    this.#onEditClick = onEditClick;
+
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler); //ошибка здесь
+  } // this[#onEditClick] is not a function
 
   get template() {
     return createFormTemplate(this.#event, this.#typeOffers, this.#destinations);
   }
 
-  removeElement() {
-    this.element = null;
-  }
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this.onEditClick();
+  };
 }
 
 /*export default class FormView {
