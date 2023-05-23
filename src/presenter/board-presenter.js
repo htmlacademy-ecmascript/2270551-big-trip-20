@@ -1,6 +1,7 @@
 import FormView from '../view/form-view.js';
 import {render} from '../framework/render.js';
 
+
 export default class FormPresenter {
   constructor({ container, event, typeOffers, destinations }) {
     this.container = container;
@@ -18,7 +19,12 @@ export default class FormPresenter {
     this.formComponent.init();*/
 
   init() {
-    this.formComponent = new FormView({ event: this.event, typeOffers: this.typeOffers, destinations: this.destinations });
+    this.formComponent = new FormView({
+      container: this.eventsListComponent.getElement(),
+      event: this.events[0],
+      typeOffers: this.offers.get(this.events[0].type),
+      destinations: this.destinations,});
+    //event: this.event, typeOffers: this.typeOffers, destinations: this.destinations });
     render(this.formComponent, this.container);
   }
 
