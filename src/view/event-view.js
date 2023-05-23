@@ -78,53 +78,33 @@ function createEventTemplate(event, typeOffers) {
 
 export default class EventView extends AbstractView {
   #event = null;
-  #destinations = null;
   #typeOffers = null;
-  #onEditClick = null;
   #handleFavoriteClick = null;
-  #element = null;
   #handleClick = null;
 
-  constructor({event, destinations, typeOffers, element, onClick, onFavoriteClick}) {
+  constructor({event, typeOffers, onClick, onFavoriteClick}) {
     super();
     this.#event = event;
-    this.#destinations = destinations;
     this.#typeOffers = typeOffers;
-    this.#element = element;
-    //this.#onEditClick = onEditClick;
-    //this.#handleFavoriteClick = onFavoriteClick;
     this.#handleClick = onClick;
     this.#handleFavoriteClick = onFavoriteClick;
     this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#clickHandler);
     this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favoriteClickHandler);
-
-    //this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
-    // this[#onEditClick] is not a function
-    //this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favoriteClickHandler);
-    // this.#handleFavoriteClick is not a function
   }
 
   get template() {
     return createEventTemplate(this.#event, this.#typeOffers);
   }
 
-  /*#editClickHandler = (evt) => {
-    evt.preventDefault();
-    this.#onEditClick();
-  };
-
   #favoriteClickHandler = (evt) => {
     evt.preventDefault();
     this.#handleFavoriteClick();
-  };*/
+  };
 
   #clickHandler = (evt) => {
     evt.preventDefault();
     this.#handleClick();
   };
 
-  #favoriteClickHandler = (evt) => {
-    evt.preventDefault();
-    this.#handleFavoriteClick();
-  };
+
 }
