@@ -79,32 +79,31 @@ function createEventTemplate(event, typeOffers) {
 export default class EventView extends AbstractView {
   #event = null;
   #typeOffers = null;
-  #handleFavoriteClick = null;
-  #handleClick = null;
+  //#handleFavoriteClick = null;
+  #handleEditClick = null;
 
-  constructor({event, typeOffers, onClick, onFavoriteClick}) {
+  constructor({event, typeOffers, onEditBtnClick, /*onFavoriteClick*/}) {
     super();
     this.#event = event;
     this.#typeOffers = typeOffers;
-    this.#handleClick = onClick;
-    this.#handleFavoriteClick = onFavoriteClick;
+    this.#handleEditClick = onEditBtnClick;
+    //this.#handleFavoriteClick = onFavoriteClick;
     this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#clickHandler);
-    this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favoriteClickHandler);
+    //this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favoriteClickHandler);
   }
 
   get template() {
     return createEventTemplate(this.#event, this.#typeOffers);
   }
 
-  #favoriteClickHandler = (evt) => {
+  /*#favoriteClickHandler = (evt) => {
     evt.preventDefault();
     this.#handleFavoriteClick();
-  };
+  };*/
 
   #clickHandler = (evt) => {
     evt.preventDefault();
-    this.#handleClick();
+    this.#handleEditClick();
   };
-
 
 }
