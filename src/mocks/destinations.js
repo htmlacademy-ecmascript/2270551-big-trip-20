@@ -17,41 +17,51 @@ const mockDescriptions = [
   'Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.',
 ];
 
+const picDescription = [
+  'Lorem ipsum dolor sit amet',
+  'Cras aliquet varius magna',
+  'Nullam nunc ex',
+  'Aliquam erat',
+  'Nunc fermentum tortor',
+];
+
+//количество картинок в форме ввода
 const PICTURES_NUMBER = 4;
 
 const mockPictures = [
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Lorem ipsum dolor sit amet',
+    description: getRandomArrayElement(picDescription),
   },
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Cras aliquet varius magna',
+    description: getRandomArrayElement(picDescription),
   },
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Nullam nunc ex',
+    description: getRandomArrayElement(picDescription),
   },
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Aliquam erat',
+    description: getRandomArrayElement(picDescription),
   },
   {
     src: `https://loremflickr.com/248/152?random=${getRandomNumber(1, 30)}`,
-    description: 'Nunc fermentum tortor',
+    description: getRandomArrayElement(picDescription), // описаник моковой картинки
   },
 ];
 
+// подготовка данных описания места назначения
 function createMockDestination() {
   return {
-    description: getRandomArrayElement(mockDescriptions),
+    description: getRandomArrayElement(mockDescriptions), //выборка из моковых описаний точки путешествия
     pictures: Array.from(
       { length: PICTURES_NUMBER },
-      () => getRandomArrayElement(mockPictures)
+      () => getRandomArrayElement(mockPictures) // массив-выборка из набора моковых фото
     ),
   };
 }
-
+//формирование коллекции ключ-значение для связки места назначения и его описания
 function createMockDestinations() {
   const destinations = new Map();
   DESTINATIONS_TITLES.forEach((title) => destinations.set(title, createMockDestination()));

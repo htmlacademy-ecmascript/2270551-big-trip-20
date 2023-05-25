@@ -1,7 +1,6 @@
+import AbstractView from '../framework/view/abstract-view.js';
 import { WAYPOINT_TYPES, EMPTY_EVENT, DateFormats } from '../consts.js';
-import { createElement } from '../render.js';
-import { getRandomArrayElement, startStringWithCapital, transformDate } from '../utils.js';
-import {OFFERS_TITLES, OFFERS_PRICES } from '../mocks/offers.js';
+import { startStringWithCapital, transformDate } from '../utils.js';
 
 function createTypesListItemTemplate(title) {
   return `<div class="event__type-item">
@@ -13,7 +12,7 @@ function createTypesListItemTemplate(title) {
           </div>`;
 }
 
-// район оферов в форме новой точки, описанте точки назначения в форме новой точки
+//район оферов в форме новой точки, описанте точки назначения в форме новой точки
 function createDestinationInfoTemplate(destination) {
   const { description, pictures } = destination;
 
@@ -42,52 +41,13 @@ function createPicturesListTemplate(pictures) {
           </div>`;
 }
 
-/*function createOffersTemplate(offersList) {
-  return offersList.map(() =>
-    `<div class="event__offer-selector">
-       <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage-1"}>
-       <label class="event__offer-label" for="event-offer-luggage-1">
-         <span class="event__offer-title">${getRandomArrayElement(OFFERS_TITLES)}</span>
-         &plus;&euro;&nbsp;
-         <span class="event__offer-price">${getRandomArrayElement(OFFERS_PRICES)}</span>
-       </label>
-     </div>`).join('');
-} */
-
-// отрисовка кнопок офферсов (дополнительных предложений) в форме новой точки
-function createOffersTemplate(offersList, isSelected) {
-  const selectedAttribute = isSelected ? 'checked' : '';
-  return offersList.map(() =>
-    `<div class="event__offer-selector">
-       <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1}" type="checkbox" name="event-offer-luggage-1" ${selectedAttribute}>
-       <label class="event__offer-label" for="event-offer-luggage-1">
-         <span class="event__offer-title">${getRandomArrayElement(OFFERS_TITLES)}</span>
-         &plus;&euro;&nbsp;
-         <span class="event__offer-price">${getRandomArrayElement(OFFERS_PRICES)}</span>
-       </label>
-     </div>`).join('');
-
-}
-
-/*function createOffersTemplate(offersList, isSelected) {
-  const selectedAttribute = isSelected ? 'checked' : '';
-  return offersList.map((offer) =>
-    `<div class="event__offer-selector">
-       <input class="event__offer-checkbox  visually-hidden" id="event-offer" type="checkbox" name="event-offer" ${selectedAttribute}>
-       <label class="event__offer-label" for="event-offer">
-         <span class="event__offer-title">${offer.title}</span>
-         &plus;&euro;&nbsp;
-         <span class="event__offer-price">${offer.price}</span>
-       </label>
-     </div>`).join('');
-}*/
-
-/*function createOffersItemTemplate({ offer, isSelected }) {
-  const { title, price } = offer;
+//отрисовка кнопок офферсов (дополнительных предложений) в форме новой точки
+function createOffersItemTemplate({ offerId, offerInfo, isSelected }) {
+  const { title, price } = offerInfo;
   const selectedAttribute = isSelected ? 'checked' : '';
   return `<div class="event__offer-selector">
-            <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" ${selectedAttribute}>
-            <label class="event__offer-label" for="event-offer-luggage-1">
+            <input class="event__offer-checkbox  visually-hidden" id="event-offer-${offerId}-1" type="checkbox" name="event-offer-${offerId}" ${selectedAttribute}>
+            <label class="event__offer-label" for="event-offer-${offerId}-1">
               <span class="event__offer-title">${title}</span>
               &plus;&euro;&nbsp;
               <span class="event__offer-price">${price}</span>
@@ -97,16 +57,16 @@ function createOffersTemplate(offersList, isSelected) {
 
 function createOffersTemplate({ allOffers, selectedOffersIds }) {
   let offersItemsTemplate = '';
-  for (const [ id, offer ] of allOffers) {
-    const isSelected = selectedOffersIds.includes(id);
-    offersItemsTemplate += createOffersItemTemplate({ offer: offer, isSelected: isSelected });
+  for (const [offerId, offerInfo] of allOffers.entries()) {
+    const isSelected = selectedOffersIds.includes(offerId);
+    offersItemsTemplate += createOffersItemTemplate({ offerId, offerInfo, isSelected });
   }
 
   return `<section class="event__section  event__section--offers">
             <h3 class="event__section-title  event__section-title--offers">Offers</h3>
             <div class="event__available-offers">${offersItemsTemplate}<div>
           </section>`;
-} */
+}
 
 // отображение фильтров
 function createDataListItemTemplate(title) {
@@ -124,7 +84,7 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
     createTypesListItemTemplate(title)
   ).join('');
 
-  const offersTemplate = typeOffers.length
+  const offersTemplate = typeOffers.size
     ? createOffersTemplate({ allOffers: typeOffers, selectedOffersIds: offers })
     : '';
 
@@ -133,8 +93,7 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
     ? createDestinationInfoTemplate(destinationInfo)
     : '';
 
-  return `
-          <li class="trip-events__item">
+  return `<li class="trip-events__item">
             <form class="event event--edit" action="#" method="post">
               <header class="event__header">
                 <div class="event__type-wrapper">
@@ -152,7 +111,7 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
                 </div>
                 <div class="event__field-group  event__field-group--destination">
                   <label class="event__label  event__type-output" for="event-destination-1">
-                  ${startStringWithCapital(type)}
+                    ${startStringWithCapital(type)}
                   </label>
                   <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${destination}" list="destination-list-1">
                   <datalist id="destination-list-1">${dataListTemplate}</datalist>
@@ -183,45 +142,48 @@ function createFormTemplate({ event = EMPTY_EVENT, typeOffers = [], destinations
                 </button>
               </header>
               <section class="event__details">
-                <section class="event__section  event__section--offers">
-                 <h3 class="event__section-title  event__section-title--offers">Offers</h3>
-                   <div class="event__available-offers">
-
-                   ${offers ? createOffersTemplate(offers) : ''}
-                   ${offersTemplate}
-                   </div>
-                </section>
+                ${offersTemplate}
                 ${destinationInfoTemplate}
               </section>
             </form>
           </li>`;
 }
-//${offersTemplate}
-//${offers ? createOffersTemplate(offers) : ''}
-export default class FormView {
-  constructor({ event, typeOffers, destinations }) {
-    this.event = event;
-    this.typeOffers = typeOffers;
-    this.destinations = destinations;
+
+export default class FormView extends AbstractView {
+  #event = null;
+  #typeOffers = null;
+  #destinations = null;
+  #handleCloseForm = null;
+
+  constructor({ event, typeOffers, destinations, closeForm }) {
+    super();
+    this.#event = event;
+    this.#typeOffers = typeOffers;
+    this.#destinations = destinations;
+    this.#handleCloseForm = closeForm;
+    this.element
+      .querySelector('form')
+      .addEventListener('submit', this.#formSubmitHandler);
+    this.element
+      .querySelector('.event__rollup-btn')
+      .addEventListener('click', this.#editBtnClickHandler);
   }
 
-  getTemplate() {
+  get template() {
     return createFormTemplate({
-      event: this.event,
-      typeOffers: this.typeOffers,
-      destinations: this.destinations,
+      event: this.#event,
+      typeOffers: this.#typeOffers,
+      destinations: this.#destinations,
     });
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
+  #formSubmitHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleCloseForm();
+  };
 
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
+  #editBtnClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleCloseForm();
+  };
 }

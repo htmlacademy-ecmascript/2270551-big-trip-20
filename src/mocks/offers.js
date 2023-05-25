@@ -1,6 +1,6 @@
 import { getRandomArrayElement } from '../utils.js';
 import { WAYPOINT_TYPES } from '../consts.js';
-//const OFFERS = ['Order Uber', 'Add luggage', 'Switch to comfort', 'Rent a car', 'Add breakfast', 'Book tickets', 'Lunch in city'];
+
 const OFFERS_NUMBER = 6;
 
 const OFFERS_TITLES = [

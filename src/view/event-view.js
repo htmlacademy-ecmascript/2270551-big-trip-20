@@ -1,11 +1,13 @@
+import AbstractView from '../framework/view/abstract-view.js';
 import { DateFormats } from '../consts.js';
 import { transformDate, getDuration } from '../utils.js';
-import { createElement } from '../render.js';
 
+// получение выбранных предложений
 function getChosenOffers(offers, offersIds) {
   return offersIds.map((offerId) => offers.get(offerId));
 }
 
+// подготовка данных предложений (offers) в строке
 function createOfferTemplate({ title, price }) {
   return `<li class="event__offer">
             <span class="event__offer-title">${title}</span>
@@ -13,7 +15,7 @@ function createOfferTemplate({ title, price }) {
             <span class="event__offer-price">${price}</span>
           </li>`;
 }
-
+// шаблон предложений (offers)
 function createOffersTemplate({ typeOffers, offers }) {
   const offersItemsTemplate = getChosenOffers(typeOffers, offers)
     .map((offer) => createOfferTemplate(offer))
@@ -23,6 +25,7 @@ function createOffersTemplate({ typeOffers, offers }) {
           <ul class="event__selected-offers">${offersItemsTemplate}</ul>`;
 }
 
+// шаблон событий
 function createEventTemplate(event, typeOffers) {
   const { type, destination, basePrice, isFavorite, offers, dateFrom, dateTo } = event;
 
@@ -30,7 +33,7 @@ function createEventTemplate(event, typeOffers) {
 
   const favoriteClass = isFavorite ? 'event__favorite-btn--active' : '';
 
-  const duration = getDuration(dateFrom, dateTo);
+  const duration = getDuration(dateFrom, dateTo); //функция расчета длительности события из utils
 
   return `<li class="trip-events__item">
               <div class="event">
@@ -73,26 +76,34 @@ function createEventTemplate(event, typeOffers) {
             </li>`;
 }
 
-export default class EventView {
+export default class EventView extends AbstractView {
+  #event = null;
+  #typeOffers = null;
+  //#handleFavoriteClick = null;
+  #handleEditClick = null;
 
-  constructor({ event, typeOffers }) {
-    this.event = event;
-    this.typeOffers = typeOffers;
+  constructor({event, typeOffers, onEditBtnClick, /*onFavoriteClick*/}) {
+    super();
+    this.#event = event;
+    this.#typeOffers = typeOffers;
+    this.#handleEditClick = onEditBtnClick;
+    //this.#handleFavoriteClick = onFavoriteClick;
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#clickHandler);
+    //this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favoriteClickHandler);
   }
 
-  getTemplate() {
-    return createEventTemplate(this.event, this.typeOffers);
+  get template() {
+    return createEventTemplate(this.#event, this.#typeOffers);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
+  /*#favoriteClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleFavoriteClick();
+  };*/
 
-    return this.element;
-  }
+  #clickHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleEditClick();
+  };
 
-  removeElement() {
-    this.element = null;
-  }
 }
