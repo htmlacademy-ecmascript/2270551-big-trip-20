@@ -1,4 +1,4 @@
-import { filtersFunctions } from '../utils.js';
+import { filtersFunctions } from '../filter-utils.js';
 
 function getFilters(events) {
   return Object.entries(filtersFunctions).map(

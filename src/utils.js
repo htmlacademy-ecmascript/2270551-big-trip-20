@@ -38,6 +38,7 @@ function isKeyEscape(evt) {
   return evt.key === 'Escape';
 }
 
+
 export {
   getRandomNumber,
   getRandomArrayElement,

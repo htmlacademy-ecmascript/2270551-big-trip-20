@@ -64,6 +64,7 @@ export default class EventsPresenter {
       typeOffers,
       destinations: this.#destinations,
       container: this.#eventsListComponent.element,
+      onSubmitClick: eventSubmit,
       closeForm: () => {
         switchFormToEvent();
         document.removeEventListener('keydown', escKeyDownHandler);
@@ -76,6 +77,11 @@ export default class EventsPresenter {
 
     function switchFormToEvent() {
       replace(eventComponent, formComponent);
+    }
+
+    function eventSubmit() {
+      switchFormToEvent();
+      document.removeEventListener('keydown', escKeyDownHandler);
     }
 
     function escKeyDownHandler(evt) {

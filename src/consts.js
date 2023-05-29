@@ -12,6 +12,13 @@ const WAYPOINT_TYPES = [
 
 const FILTERS_NAMES = ['everything', 'future', 'present', 'past'];
 
+const FiltersNames = {
+  ALL : 'everything',
+  FUTURE: 'future',
+  PRESENT: 'present',
+  PAST: 'past',
+};
+
 const SORTING_NAMES = ['day', 'event', 'time', 'price', 'offers'];
 
 const DateFormats = {
@@ -39,4 +46,4 @@ const EMPTY_EVENT = {
   isFavorite: false,
 };
 
-export { WAYPOINT_TYPES, FILTERS_NAMES, SORTING_NAMES, NoEventsMessages, DateFormats, EMPTY_EVENT };
+export { WAYPOINT_TYPES, FiltersNames, FILTERS_NAMES, SORTING_NAMES, NoEventsMessages, DateFormats, EMPTY_EVENT };
