@@ -4,11 +4,13 @@ import {render} from '../framework/render.js';
 export default class SortingPresenter {
   #container = null;
 
-  constructor({container}) {
+  #sortingComponent = new SortingView();
+
+  constructor({ container }) {
     this.#container = container;
   }
 
   init() {
-    render(new SortingView(), this.#container);
+    render(this.#sortingComponent, this.#container);
   }
 }
