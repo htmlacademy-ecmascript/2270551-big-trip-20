@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import FiltersNames from '../consts.js';
+import {FiltersNames} from '../consts.js';
 
 const filtersFunctions = {
   [FiltersNames.ALL]: (event) => event,

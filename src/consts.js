@@ -11,6 +11,7 @@ const WAYPOINT_TYPES = [
 ];
 
 const FILTERS_NAMES = ['everything', 'future', 'present', 'past'];
+// перечисление фильтров
 
 const FiltersNames = {
   ALL : 'everything',

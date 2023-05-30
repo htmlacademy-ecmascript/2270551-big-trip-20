@@ -35,7 +35,7 @@ export default class EventsPresenter {
 
   #renderEvents() {
     render(this.#eventsListComponent, this.#container);
-
+    // добавляем логику отображения заглушки
     if (!this.#events.length) {
       render(
         new NoRoutePointView({ message: NoEventsMessages.ALL }),

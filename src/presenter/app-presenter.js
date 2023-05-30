@@ -6,6 +6,7 @@ import SortingPresenter from './sort-presenter.js';
 import ButtonPresenter from './event-button-presenter.js';
 import EventsPresenter from './board-presenter.js';
 import { render, RenderPosition } from '../framework/render.js';
+import FiltersPresenter from './filters-presenter.js';
 
 
 export default class AppPresenter {
@@ -33,10 +34,15 @@ export default class AppPresenter {
       offersModel: this.offersModel,
       destinationsModel: this.destinationsModel,
     });
+    this.filtersComponent = new FiltersPresenter ({
+      container:  this.filtersElement,
+    });
+
     render(new TripInfoView(), this.tripMainElement, RenderPosition.AFTERBEGIN);
     this.sortingComponent.init();
     this.eventsComponent.init();
     this.buttonComponent.init();
+    this.filtersComponent.init();
   }
 
 }
