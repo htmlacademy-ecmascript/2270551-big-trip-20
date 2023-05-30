@@ -1,6 +1,6 @@
 import { filtersFunctions } from '../utils/filter-utils.js';
 
-/*function getFilters(events) {
+function getFilters(events) {
   return Object.entries(filtersFunctions).map(
     ([name, filterFn]) => ({
       name,
@@ -9,9 +9,9 @@ import { filtersFunctions } from '../utils/filter-utils.js';
   );
 }
 
-export { getFilters };*/
+export { getFilters };
 
-function getFilters(tasks) {
+/*function getFilters(tasks) {
   return Object.entries(filtersFunctions).map(
     ([filterType, filterTasks]) => ({
       type: filterType,
@@ -20,4 +20,4 @@ function getFilters(tasks) {
   );
 }
 
-export {getFilters};
+export {getFilters};*/

@@ -35,7 +35,7 @@ export default class AppPresenter {
       destinationsModel: this.destinationsModel,
     });
     this.filtersComponent = new FiltersPresenter ({
-      container:  this.filtersElement,
+      container:  this.filtersElement, // отрисовка кнопок фильтров
     });
 
     render(new TripInfoView(), this.tripMainElement, RenderPosition.AFTERBEGIN);

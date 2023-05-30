@@ -14,4 +14,5 @@ const filtersFunctions = {
   [FiltersNames.PAST]: (event) =>
     event.filter(({ dateTo }) => dayjs(dateTo).isBefore(dayjs(), 'day')),
 };
+
 export {filtersFunctions};

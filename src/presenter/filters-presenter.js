@@ -15,3 +15,4 @@ export default class FiltersPresenter {
     render(this.#filtersComponent, this.#container);
   }
 }
+
