@@ -4,11 +4,11 @@ import DestinationsModel from '../model/destinations-model.js';
 import TripInfoView from '../view/trip-info-view.js';
 //import SortingPresenter from './sort-presenter.js';
 //import ButtonPresenter from './event-button-presenter.js';
-import EventsPresenter from './board-presenter.js';
+//import EventsPresenter from './board-presenter.js';
 import { render, RenderPosition } from '../framework/render.js';
-import FiltersPresenter from './filters-presenter.js';
 import { getFilters } from '../mocks/filters.js';
-//import FiltersView from '../view/filter-view.js';
+import FiltersView from '../view/filter-view.js';
+//import FiltersPresenter from './filters-presenter.js';
 
 
 export default class AppPresenter {
@@ -17,7 +17,7 @@ export default class AppPresenter {
   #siteMainElement = null;
 
   #filtersComponent = null;
-  #eventsComponent = null;
+  //#eventsComponent = null;
 
   #eventsModel = new EventsModel();
   #offersModel = new OffersModel();
@@ -33,8 +33,8 @@ export default class AppPresenter {
 
   init() {
     this.#renderTripInfo();
-    this.#renderFilters();
-    this.#renderEventsList();
+    //this.#renderFilters();
+    //this.#renderEventsList();
 
   }
 
@@ -47,14 +47,14 @@ export default class AppPresenter {
   }
 
   #renderFilters() {
-    this.#filtersComponent = new FiltersPresenter({
+    this.#filtersComponent = new FiltersView({
       container: this.#filtersElement,
       filters: this.#filters,
     });
     this.#filtersComponent.init();
   }
 
-  #renderEventsList() {
+  /*#renderEventsList() {
     this.#eventsComponent = new EventsPresenter({
       container: this.#siteMainElement,
       eventsModel: this.#eventsModel,
@@ -62,7 +62,7 @@ export default class AppPresenter {
       destinationsModel: this.#destinationsModel,
     });
     this.#eventsComponent.init();
-  }
+  }*/
 }
 
 

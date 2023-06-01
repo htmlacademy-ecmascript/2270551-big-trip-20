@@ -12,6 +12,7 @@ import { sortByTime, sortByPrice, sortMap } from '../utils.js';
 export default class EventsPresenter {
   #container = null;
   #sortingComponent = null;
+  #siteMainElement = null;
 
   #eventsListComponent = new EventsListView();
 
@@ -24,6 +25,7 @@ export default class EventsPresenter {
   #destinations = null;
   #sourcedEvents = null;
   #eventPresenters = new Map();
+  #eventsComponent = null;
 
   #currentSorting = SortingNames.DAY;
 
@@ -41,6 +43,7 @@ export default class EventsPresenter {
     this.#sourcedEvents = new Map(this.#events);
     this.#renderSorting();
     this.#renderEvents();
+    this.#renderEventsList();
 
   }
 
@@ -54,6 +57,16 @@ export default class EventsPresenter {
       onSortingClick: this.#handleSortingClick,
     });
     render(this.#sortingComponent, this.#eventsListComponent.element);
+  }
+
+  #renderEventsList() {
+    this.#eventsComponent = new EventsPresenter({
+      container: this.#siteMainElement,
+      eventsModel: this.#eventsModel,
+      offersModel: this.#offersModel,
+      destinationsModel: this.#destinationsModel,
+    });
+    this.#eventsComponent.init();
   }
 
   #renderEvents() {

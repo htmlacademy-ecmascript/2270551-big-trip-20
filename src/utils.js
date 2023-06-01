@@ -1,12 +1,9 @@
 import { DurationFormats } from './consts.js';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+
 
 dayjs.extend(duration);
-dayjs.extend(isSameOrAfter);
-dayjs.extend(isSameOrBefore);
 
 function getRandomNumber(min = 1, max = 10) {
   return Math.floor(Math.random() * (max + 1 - min) + min);
