@@ -6,13 +6,12 @@ export default class FiltersPresenter {
 
   #filtersComponent = null;
 
-  constructor({ container, filters }) {
+  constructor({ container, filtersFunctions }) {
     this.#container = container;
-    this.#filtersComponent = new FiltersView({ filters });
+    this.#filtersComponent = new FiltersView({ filtersFunctions });
   }
 
   init() {
     render(this.#filtersComponent, this.#container);
   }
 }
-
