@@ -1,10 +1,11 @@
+//функция генерации фильтров
 import { filtersFunctions } from '../utils/filter-utils.js';
 
 function getFilters(events) {
   return Object.entries(filtersFunctions).map(
-    ([name, filterFn]) => ({
+    ([name, FilterFn]) => ({
       name,
-      isActive: Boolean(filterFn(events).length),
+      isActive: Boolean(FilterFn(events).length),
     })
   );
 }

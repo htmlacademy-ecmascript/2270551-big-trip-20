@@ -1,7 +1,12 @@
+import { DurationFormats } from './consts.js';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
 dayjs.extend(duration);
+dayjs.extend(isSameOrAfter);
+dayjs.extend(isSameOrBefore);
 
 function getRandomNumber(min = 1, max = 10) {
   return Math.floor(Math.random() * (max + 1 - min) + min);
@@ -15,19 +20,30 @@ function transformDate(date, format) {
   return dayjs(date).format(format);
 }
 
+function calculateDuration(timeFrom, timeTo) {
+  return dayjs.duration(dayjs(timeTo).diff(timeFrom));
+}
+
 function getDuration(timeFrom, timeTo) {
+  const timeDuration = calculateDuration(timeFrom, timeTo);
 
-  const timeDuration = dayjs.duration(dayjs(timeTo).diff(timeFrom));
+  const isDaysLong = Boolean(timeDuration.days());
+  const isHoursLong = Boolean(timeDuration.hours());
 
-  let days = timeDuration.days();
-  days = days ? `${dayjs(days).format('DD[D]')} ` : '';
+  let format;
 
-  let hours = timeDuration.hours();
-  hours = hours || days ? `${dayjs(hours).format('HH[H]')} ` : '';
+  switch (true) {
+    case isDaysLong:
+      format = DurationFormats.DAYS;
+      break;
+    case isHoursLong:
+      format = DurationFormats.HOURS;
+      break;
+    default:
+      format = DurationFormats.MINUTES;
+  }
 
-  const minutes = dayjs(timeDuration.minutes()).format('MM[M]');
-
-  return days + hours + minutes;
+  return timeDuration.format(format);
 }
 
 function startStringWithCapital(str) {
@@ -38,6 +54,21 @@ function isKeyEscape(evt) {
   return evt.key === 'Escape';
 }
 
+function sortByTime(itemA, itemB) {
+  const timeA = calculateDuration(itemA.dateFrom, itemA.dateTo).asMinutes();
+  const timeB = calculateDuration(itemB.dateFrom, itemB.dateTo).asMinutes();
+  return timeB - timeA;
+}
+
+function sortByPrice(itemA, itemB) {
+  return itemB.basePrice - itemA.basePrice;
+}
+
+function sortMap(map, sortingFn) {
+  return new Map(
+    [...map].sort((itemA, itemB) => sortingFn(itemA[1], itemB[1]))
+  );
+}
 
 export {
   getRandomNumber,
@@ -46,4 +77,7 @@ export {
   getDuration,
   isKeyEscape,
   startStringWithCapital,
+  sortByTime,
+  sortByPrice,
+  sortMap,
 };
