@@ -6,9 +6,9 @@ export default class FiltersPresenter {
 
   #filtersComponent = null;
 
-  constructor({ container, filtersFunctions }) {
+  constructor({ container, filters }) {
     this.#container = container;
-    this.#filtersComponent = new FiltersView({ filtersFunctions });
+    this.#filtersComponent = new FiltersView({ filters });
   }
 
   init() {

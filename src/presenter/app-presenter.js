@@ -7,7 +7,8 @@ import TripInfoView from '../view/trip-info-view.js';
 import EventsPresenter from './board-presenter.js';
 import { render, RenderPosition } from '../framework/render.js';
 import { getFilters } from '../mocks/filters.js';
-import FiltersView from '../view/filter-view.js';
+//import FiltersView from '../view/filter-view.js';
+import FiltersPresenter from './filters-presenter.js';
 //import FiltersPresenter from './filters-presenter.js';
 
 
@@ -33,7 +34,7 @@ export default class AppPresenter {
 
   init() {
     this.#renderTripInfo();
-    //this.#renderFilters();
+    this.#renderFilters();
     this.#renderEventsList();
 
   }
@@ -47,7 +48,7 @@ export default class AppPresenter {
   }
 
   #renderFilters() {
-    this.#filtersComponent = new FiltersView({
+    this.#filtersComponent = new FiltersPresenter({
       container: this.#filtersElement,
       filters: this.#filters,
     });
