@@ -9,6 +9,7 @@ import { render, RenderPosition } from '../framework/render.js';
 import { getFilters } from '../mocks/filters.js';
 //import FiltersView from '../view/filter-view.js';
 import FiltersPresenter from './filters-presenter.js';
+import ButtonView from '../view/event-button-view.js';
 //import FiltersPresenter from './filters-presenter.js';
 
 
@@ -36,6 +37,7 @@ export default class AppPresenter {
     this.#renderTripInfo();
     this.#renderFilters();
     this.#renderEventsList();
+    this.#renderButton();
 
   }
 
@@ -44,6 +46,13 @@ export default class AppPresenter {
       new TripInfoView(),
       this.#tripMainElement,
       RenderPosition.AFTERBEGIN
+    );
+  }
+
+  #renderButton() {
+    render (
+      new ButtonView(),
+      this.#tripMainElement,
     );
   }
 
