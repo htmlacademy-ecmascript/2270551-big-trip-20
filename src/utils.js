@@ -67,6 +67,18 @@ function sortMap(map, sortingFn) {
   );
 }
 
+function getChosenItemsMap(items, chosenItems = []) {
+  if (!items.length) {
+    return new Map();
+  }
+
+  const map = new Map();
+  items.forEach((item) => {
+    map.set(item, chosenItems.includes(item));
+  });
+  return map;
+}
+
 export {
   getRandomNumber,
   getRandomArrayElement,
@@ -77,4 +89,5 @@ export {
   sortByTime,
   sortByPrice,
   sortMap,
+  getChosenItemsMap,
 };
