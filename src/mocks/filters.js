@@ -11,14 +11,3 @@ function getFilters(events) {
 }
 
 export { getFilters };
-
-/*function getFilters(tasks) {
-  return Object.entries(filtersFunctions).map(
-    ([filterType, filterTasks]) => ({
-      type: filterType,
-      disabled: !filterTasks(tasks).length,
-    }),
-  );
-}
-
-export {getFilters};*/
