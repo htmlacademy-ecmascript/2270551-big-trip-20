@@ -19,6 +19,7 @@ export default class EventsPresenter {
   #offersModel = null;
   #destinationsModel = null;
 
+
   #events = [];
   #offers = null;
   #destinations = null;
@@ -44,7 +45,7 @@ export default class EventsPresenter {
 
   }
 
-  #clearEventsList() {
+  #clearEvents() {
     this.#eventPresenters.forEach((presenter) => presenter.destroy());
     this.#eventPresenters.clear();
   }
@@ -90,8 +91,14 @@ export default class EventsPresenter {
       return;
     }
     this.#sortEvents(sortType);
-    this.#clearEventsList();
-    this.#renderEvents();
+    this.#clearEvents();
+    this.#renderEvent();
+  };
+
+  #handleEventChange = (updatedEvent) => {
+    this.#events.set(updatedEvent.id, updatedEvent);
+    this.#sourcedEvents.set(updatedEvent.id, updatedEvent);
+    this.#eventPresenters.get(updatedEvent.id).init(updatedEvent);
   };
 
   #renderEvent = (event) => {
@@ -100,6 +107,7 @@ export default class EventsPresenter {
       event,
       typeOffers,
       destinations: this.#destinations,
+      onEventChange: this.#handleEventChange,
       onEditBtnClick: () => {
         switchEventToForm();
         document.addEventListener('keydown', escKeyDownHandler);

@@ -74,3 +74,4 @@ export default class AppPresenter {
     this.#eventsComponent.init();
   }
 }
+
