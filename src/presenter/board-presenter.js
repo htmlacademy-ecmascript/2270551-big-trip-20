@@ -45,7 +45,7 @@ export default class EventsPresenter {
 
   }
 
-  #clearEvents() {
+  #clearEventsList() {
     this.#eventPresenters.forEach((presenter) => presenter.destroy());
     this.#eventPresenters.clear();
   }
@@ -91,8 +91,8 @@ export default class EventsPresenter {
       return;
     }
     this.#sortEvents(sortType);
-    this.#clearEvents();
-    this.#renderEvent();
+    this.#clearEventsList();
+    this.#renderEvents();
   };
 
   #handleEventChange = (updatedEvent) => {
