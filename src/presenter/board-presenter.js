@@ -1,29 +1,26 @@
-import EventsListView from '../view/events-list-view.js';
-import EventView from '../view/event-view.js';
-import SortingView from '../view/sort-view.js';
 import NoRoutePointView from '../view/no-event-view.js';
-import FormView from '../view/form-view.js';
-import {render, replace } from '../framework/render.js';
-import { isKeyEscape } from '../utils.js';
+import EventsListView from '../view/events-list-view.js';
+import SortingView from '../view/sort-view.js';
+import EventPresenter from './event-presenter.js';
+import { render } from '../framework/render.js';
 import { NoEventsMessages, SortingNames } from '../consts.js';
-//import SortingPresenter from './sort-presenter.js';
 import { sortByTime, sortByPrice, sortMap } from '../utils.js';
 
-export default class EventsPresenter {
+export default class EventsListPresenter {
   #container = null;
-  #sortingComponent = null;
 
   #eventsListComponent = new EventsListView();
+  #sortingComponent = null;
 
   #eventsModel = null;
   #offersModel = null;
   #destinationsModel = null;
 
-
-  #events = [];
+  #events = null;
+  #sourcedEvents = null;
   #offers = null;
   #destinations = null;
-  #sourcedEvents = null;
+
   #eventPresenters = new Map();
 
   #currentSorting = SortingNames.DAY;
@@ -36,18 +33,48 @@ export default class EventsPresenter {
   }
 
   init() {
-    this.#events = [...this.#eventsModel.events];
+    this.#events = new Map(
+      this.#eventsModel.events.map((event) => [event.id, event])
+    );
+    this.#sourcedEvents = new Map(this.#events);
     this.#offers = this.#offersModel.offers;
     this.#destinations = this.#destinationsModel.destinations;
-    this.#sourcedEvents = new Map(this.#events);
     this.#renderSorting();
-    this.#renderEvents();
-
+    this.#renderEventsList();
   }
 
   #clearEventsList() {
     this.#eventPresenters.forEach((presenter) => presenter.destroy());
     this.#eventPresenters.clear();
+  }
+
+  #renderEventsList() {
+    render(this.#eventsListComponent, this.#container);
+
+    if (!this.#events.size) {
+      render(
+        new NoRoutePointView({ message: NoEventsMessages.ALL }),
+        this.#eventsListComponent.element
+      );
+      return;
+    }
+    this.#renderEvents();
+  }
+
+  #renderEvents() {
+    this.#events.forEach((event) => this.#renderEvent(event));
+  }
+
+  #renderEvent(event) {
+    const eventPresenter = new EventPresenter({
+      container: this.#eventsListComponent.element,
+      offersModel: this.#offersModel,
+      destinationsModel: this.#destinationsModel,
+      onEventChange: this.#handleEventChange,
+      onModeChange: this.#handleModeChange,
+    });
+    eventPresenter.init(event);
+    this.#eventPresenters.set(event.id, eventPresenter);
   }
 
   #renderSorting() {
@@ -56,21 +83,6 @@ export default class EventsPresenter {
     });
     render(this.#sortingComponent, this.#eventsListComponent.element);
   }
-
-  #renderEvents() {
-    render(this.#eventsListComponent, this.#container);
-    // добавляем логику отображения заглушки
-    if (!this.#events.length) {
-      render(
-        new NoRoutePointView({ message: NoEventsMessages.ALL }),
-        this.#eventsListComponent.element
-      );
-      return;
-    }
-
-    this.#events.forEach((event) => this.#renderEvent(event));
-  }
-
 
   #sortEvents(sortType) {
     this.#currentSorting = sortType;
@@ -101,55 +113,8 @@ export default class EventsPresenter {
     this.#eventPresenters.get(updatedEvent.id).init(updatedEvent);
   };
 
-  #renderEvent = (event) => {
-    const typeOffers = this.#offers.get(event.type);
-    const eventComponent = new EventView({
-      event,
-      typeOffers,
-      destinations: this.#destinations,
-      onEventChange: this.#handleEventChange,
-      onEditBtnClick: () => {
-        switchEventToForm();
-        document.addEventListener('keydown', escKeyDownHandler);
-      }
-    });
-
-    const formComponent = new FormView({
-      event,
-      typeOffers,
-      destinations: this.#destinations,
-      container: this.#eventsListComponent.element,
-      onSubmitClick: eventSubmit,
-      closeForm: () => {
-        switchFormToEvent();
-        document.removeEventListener('keydown', escKeyDownHandler);
-      }
-    });
-
-    function switchEventToForm () {
-      replace(formComponent, eventComponent);
-    }
-
-    function switchFormToEvent() {
-      replace(eventComponent, formComponent);
-    }
-
-    function eventSubmit() {
-      switchFormToEvent();
-      document.removeEventListener('keydown', escKeyDownHandler);
-    }
-
-    function escKeyDownHandler(evt) {
-      if (!isKeyEscape(evt)) {
-        return;
-      }
-      evt.preventDefault();
-      switchFormToEvent();
-      document.removeEventListener('keydown', escKeyDownHandler);
-    }
-
-    render(eventComponent, this.#eventsListComponent.element);
+  #handleModeChange = () => {
+    this.#eventPresenters.forEach((presenter) => presenter.resetView());
   };
 }
-
 
