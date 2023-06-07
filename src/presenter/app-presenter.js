@@ -4,7 +4,7 @@ import DestinationsModel from '../model/destinations-model.js';
 import TripInfoView from '../view/trip-info-view.js';
 //import SortingPresenter from './sort-presenter.js';
 //import ButtonPresenter from './event-button-presenter.js';
-import EventsPresenter from './board-presenter.js';
+import EventsListPresenter from './board-presenter.js';
 import { render, RenderPosition } from '../framework/render.js';
 import { getFilters } from '../mocks/filters.js';
 //import FiltersView from '../view/filter-view.js';
@@ -38,7 +38,6 @@ export default class AppPresenter {
     this.#renderFilters();
     this.#renderEventsList();
     this.#renderButton();
-
   }
 
   #renderTripInfo() {
@@ -65,7 +64,7 @@ export default class AppPresenter {
   }
 
   #renderEventsList() {
-    this.#eventsComponent = new EventsPresenter({
+    this.#eventsComponent = new EventsListPresenter({
       container: this.#siteMainElement,
       eventsModel: this.#eventsModel,
       offersModel: this.#offersModel,
@@ -74,4 +73,3 @@ export default class AppPresenter {
     this.#eventsComponent.init();
   }
 }
-
