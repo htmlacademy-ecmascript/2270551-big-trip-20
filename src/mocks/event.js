@@ -51,7 +51,9 @@ const mockEvents = [
 ];
 
 function getRandomEvent() {
-  return getRandomArrayElement(mockEvents);
+  return {
+    id: crypto.randomUUID(),
+    ...getRandomArrayElement(mockEvents),
+  };
 }
-
 export { getRandomEvent };
