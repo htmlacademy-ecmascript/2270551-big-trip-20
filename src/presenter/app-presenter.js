@@ -2,15 +2,11 @@ import EventsModel from '../model/events-model.js';
 import OffersModel from '../model/offers-model.js';
 import DestinationsModel from '../model/destinations-model.js';
 import TripInfoView from '../view/trip-info-view.js';
-//import SortingPresenter from './sort-presenter.js';
-//import ButtonPresenter from './event-button-presenter.js';
 import EventsListPresenter from './board-presenter.js';
 import { render, RenderPosition } from '../framework/render.js';
 import { getFilters } from '../mocks/filters.js';
-//import FiltersView from '../view/filter-view.js';
 import FiltersPresenter from './filters-presenter.js';
 import ButtonView from '../view/event-button-view.js';
-//import FiltersPresenter from './filters-presenter.js';
 
 
 export default class AppPresenter {
