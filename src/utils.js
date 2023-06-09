@@ -2,7 +2,6 @@ import { DurationFormats } from './consts.js';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 
-
 dayjs.extend(duration);
 
 function getRandomNumber(min = 1, max = 10) {
@@ -72,6 +71,10 @@ function getChosenItemsMap(items, chosenItems = []) {
     return new Map();
   }
 
+  /*function sortByDate(dateOne, dateTwo) {
+    return dayjs(dateOne).unix() - dayjs(dateTwo).unix();
+  }*/
+
   const map = new Map();
   items.forEach((item) => {
     map.set(item, chosenItems.includes(item));
@@ -89,5 +92,6 @@ export {
   sortByTime,
   sortByPrice,
   sortMap,
+  //sortByDate,
   getChosenItemsMap,
 };
