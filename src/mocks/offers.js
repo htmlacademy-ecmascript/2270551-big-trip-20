@@ -19,6 +19,7 @@ function createMockOffers() {
 
   for (let i = 1; i <= OFFERS_NUMBER; i ++) {
     offers.set(i, {
+      id: String(i),
       title: getRandomArrayElement(OFFERS_TITLES),
       price: getRandomArrayElement(OFFERS_PRICES),
     });

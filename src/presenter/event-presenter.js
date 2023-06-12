@@ -40,9 +40,6 @@ export default class EventPresenter {
   init(event) {
     this.#event = event;
     const typeOffers = this.#offersModel.offers.get(event.type);
-    const destinationName = this.#destinationsModel.destinations.get(
-      event.destination
-    ).name;
 
     const prevEventComponent = this.#eventComponent;
     const prevFormComponent = this.#formComponent;
@@ -50,7 +47,7 @@ export default class EventPresenter {
     this.#eventComponent = new EventView({
       event: this.#event,
       typeOffers,
-      destinationName,
+      destinationName: event.destination,
       onFormOpen: this.#handleFormOpen,
       onFavoriteClick: this.#handleFavoriteClick,
     });
