@@ -5,6 +5,8 @@ import {
   getChosenItemsMap,
 } from '../utils.js';
 import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
 
 function createTypesListItemTemplate(title) {
   return `<div class="event__type-item">
@@ -172,6 +174,9 @@ export default class FormView extends AbstractStatefulView {
   #handleFormSubmit = null;
   #handleFormReset = null;
 
+  #datepickerFrom = null;
+  #datepickerTo = null;
+
   constructor({
     event = EMPTY_EVENT,
     offersModel,
@@ -201,6 +206,19 @@ export default class FormView extends AbstractStatefulView {
     this._restoreHandlers();
   }
 
+  removeElement() {
+    super.removeElement();
+
+    if (this.#datepickerFrom) {
+      this.#datepickerFrom.destroy();
+      this.#datepickerFrom = null;
+    }
+    if (this.#datepickerTo) {
+      this.#datepickerTo.destroy();
+      this.#datepickerTo = null;
+    }
+  }
+
   _restoreHandlers() {
     this.element
       .querySelector('form')
@@ -222,6 +240,8 @@ export default class FormView extends AbstractStatefulView {
         .querySelector('.event__available-offers')
         .addEventListener('change', this.#offerClickHandler);
     }
+
+    this.#setDatepickers();
 
   }
 
@@ -325,5 +345,37 @@ export default class FormView extends AbstractStatefulView {
       ),
     });
   };
+
+  #setDatepickers() {
+    const config = {
+      dateFormat: DateFormats.FLATPICKR,
+      enableTime: true,
+      'time_24hr': true,
+    };
+    this.#datepickerFrom = flatpickr(
+      this.element.querySelector('#event-start-time-1'),
+      {
+        ...config,
+        defaultDate: this._state.dateFrom ?? new Date(),
+        maxDate: this._state.dateTo ?? null,
+        onClose: ([date]) => {
+          this._setState({ dateFrom: date });
+          this.#datepickerTo.config.minDate = date;
+        },
+      }
+    );
+    this.#datepickerTo = flatpickr(
+      this.element.querySelector('#event-end-time-1'),
+      {
+        ...config,
+        defaultDate: this._state.dateTo ?? null,
+        minDate: this._state.dateFrom ?? null,
+        onClose: ([date]) => {
+          this._setState({ dateTo: date });
+          this.#datepickerFrom.config.maxDate = date;
+        },
+      }
+    );
+  }
 
 }
