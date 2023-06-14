@@ -159,6 +159,7 @@ function createFormTemplate({ event, destinationsNames }) {
           </li>`;
 }
 
+//отрисовка формы с помощью класса AbstractStatefulView
 export default class FormView extends AbstractStatefulView {
   #offersModel = null;
   #destinationsModel = null;
