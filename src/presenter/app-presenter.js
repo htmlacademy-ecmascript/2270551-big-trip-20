@@ -7,12 +7,14 @@ import { render, RenderPosition } from '../framework/render.js';
 import { getFilters } from '../mocks/filters.js';
 import FiltersPresenter from './filters-presenter.js';
 import ButtonView from '../view/event-button-view.js';
-
+//import { EventAddButtonStatus } from '../consts.js';
 
 export default class AppPresenter {
   #tripMainElement = null;
   #filtersElement = null;
   #siteMainElement = null;
+
+  #eventAddButton = null;
 
   #filtersComponent = null;
   #eventsComponent = null;
@@ -44,11 +46,16 @@ export default class AppPresenter {
     );
   }
 
-  #renderButton() {
+  /*#renderButton() {
     render (
       new ButtonView(),
       this.#tripMainElement,
     );
+  }*/
+
+  #renderButton(disabled) {
+    this.#eventAddButton = new ButtonView({disabled});
+    render(this.#eventAddButton, this.#tripMainElement);
   }
 
   #renderFilters() {

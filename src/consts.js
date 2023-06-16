@@ -35,6 +35,7 @@ const DateFormats = {
   DAY_MACHINE: 'YYYY-MM-DD',
   DAY_HUMAN: 'D MMMM',
   TIME: 'h:mm',
+  FLATPICKR: 'd/m/y H:i',
 };
 
 const DurationFormats = {
@@ -50,6 +51,11 @@ const NoEventsMessages = {
   PAST: 'There are no past events now',
 };
 
+const EventAddButtonStatus = {
+  DISABLED: 'disabled',
+  ENABLED: ''
+};
+
 const EMPTY_EVENT = {
   type: WAYPOINT_TYPES[0],
   destination: '',
@@ -60,4 +66,4 @@ const EMPTY_EVENT = {
   isFavorite: false,
 };
 
-export { WAYPOINT_TYPES, FiltersNames, FILTERS_NAMES, SortingNames, SORTING_NAMES, NoEventsMessages, DurationFormats, DateFormats, EMPTY_EVENT };
+export { WAYPOINT_TYPES, FiltersNames, FILTERS_NAMES, EventAddButtonStatus, SortingNames, SORTING_NAMES, NoEventsMessages, DurationFormats, DateFormats, EMPTY_EVENT };

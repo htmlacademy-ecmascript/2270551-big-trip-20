@@ -52,19 +52,21 @@ const mockPictures = [
 ];
 
 // подготовка данных описания места назначения
-function createMockDestination() {
+function createMockDestination(id, name) {
   return {
-    description: getRandomArrayElement(mockDescriptions), //выборка из моковых описаний точки путешествия
+    id: String(id),
+    name: name,
+    description: getRandomArrayElement(mockDescriptions),
     pictures: Array.from(
       { length: PICTURES_NUMBER },
-      () => getRandomArrayElement(mockPictures) // массив-выборка из набора моковых фото
+      () => getRandomArrayElement(mockPictures)
     ),
   };
 }
 //формирование коллекции ключ-значение для связки места назначения и его описания
 function createMockDestinations() {
   const destinations = new Map();
-  DESTINATIONS_TITLES.forEach((title) => destinations.set(title, createMockDestination()));
+  DESTINATIONS_TITLES.forEach((title, id) => destinations.set(title, createMockDestination(id, title)));
   return destinations;
 }
 
