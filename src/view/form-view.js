@@ -232,6 +232,10 @@ export default class FormView extends AbstractStatefulView {
     this.element
       .querySelector('.event__input--destination')
       .addEventListener('change', this.#destinationChangeHandler);
+    this.element.querySelector('.event__input--price')
+      .addEventListener('input', this.#eventInputPriceHandler);
+    this.element.querySelector('.event__input--price')
+      .addEventListener('change', this.#eventInputPriceChangeHandler);
     this.element
       .querySelector('.event__type-group')
       .addEventListener('change', this.#typeChangeHandler);
@@ -343,6 +347,18 @@ export default class FormView extends AbstractStatefulView {
         offerId,
         !this._state.offersSelection.get(offerId)
       ),
+    });
+  };
+
+  #eventInputPriceHandler = (evt) => {
+    evt.preventDefault();
+    evt.target.value = evt.target.value.replace(/[^0-9]/gm,'');
+  };
+
+  #eventInputPriceChangeHandler = (evt) => {
+    evt.preventDefault();
+    this.updateElement({
+      newValue: +evt.target.value
     });
   };
 
